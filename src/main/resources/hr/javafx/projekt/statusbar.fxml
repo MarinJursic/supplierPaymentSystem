@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.layout.HBox?>
+
+<HBox alignment="CENTER_LEFT" spacing="10.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hr.javafx.projekt.controller.StatusBarController">
+    <padding>
+        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+    </padding>
+    <children>
+        <Label text="Sljedeća provjera statusa:" />
+        <ProgressBar fx:id="statusProgressBar" prefWidth="200.0" progress="0.0" />
+        <Label fx:id="lastUpdateLabel" text="Zadnja provjera: -" />
+    </children>
+</HBox>

@@ -38,6 +38,14 @@ public class SessionManager {
     }
 
     /**
+     * Vraća rolu prijavljenog korisnika.
+     * @return Rola korisnika ili null ako nitko nije prijavljen.
+     */
+    public static UserRole getUserRole() {
+        return userRole;
+    }
+
+    /**
      * Provjerava je li prijavljeni korisnik administrator.
      * @return True ako je korisnik admin, inače false.
      */

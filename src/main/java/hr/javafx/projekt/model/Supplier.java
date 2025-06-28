@@ -24,6 +24,7 @@ public final class Supplier extends BaseEntity {
 
     @Override
     public String toString() {
-        return name;
+        // Format koji se lako parsira
+        return String.format("Supplier[name=%s, address=%s, oib=%s]", name, address, oib);
     }
 }

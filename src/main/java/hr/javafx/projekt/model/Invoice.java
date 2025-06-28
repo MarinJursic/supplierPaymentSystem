@@ -78,4 +78,10 @@ public final class Invoice extends BaseEntity implements Payable {
             return new Invoice(this);
         }
     }
+
+    @Override
+    public String toString() {
+        return String.format("Invoice[invoiceNumber=%s, amount=%s, supplier=%s, status=%s]",
+                invoiceNumber, amount, supplier.getName(), status.getDescription());
+    }
 }

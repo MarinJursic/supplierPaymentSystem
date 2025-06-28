@@ -3,9 +3,11 @@ package hr.javafx.projekt.repository;
 import hr.javafx.projekt.database.DatabaseConnection;
 import hr.javafx.projekt.exception.RepositoryAccessException;
 import hr.javafx.projekt.model.Supplier;
+import hr.javafx.projekt.utils.ChangeLogger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,10 +36,13 @@ public class SupplierRepository implements Repository<Supplier> {
             try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
                     supplier.setId(generatedKeys.getLong(1));
+                    ChangeLogger.logAddition(supplier);
                 }
             }
-        } catch (Exception e) {
-            log.error("Greška prilikom spremanja dobavljača!", e);
+        } catch (SQLException | IOException e) {
+            String message = "Greška prilikom spremanja dobavljača!";
+            log.error(message, e);
+
         }
         return supplier;
     }
@@ -48,11 +53,10 @@ public class SupplierRepository implements Repository<Supplier> {
     @Override
     public List<Supplier> findAll() {
         List<Supplier> suppliers = new ArrayList<>();
-        String sql = "SELECT id,name,address,oib FROM SUPPLIER";
+        String sql = "SELECT id, name, address, oib FROM SUPPLIER";
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
-
             while (rs.next()) {
                 suppliers.add(new Supplier(
                         rs.getLong("id"),
@@ -61,8 +65,10 @@ public class SupplierRepository implements Repository<Supplier> {
                         rs.getString("oib")
                 ));
             }
-        } catch (Exception e) {
-            log.error("Greška prilikom dohvaćanja svih dobavljača!", e);
+        } catch (SQLException | IOException e) {
+            String message = "Greška prilikom dohvaćanja svih dobavljača!";
+            log.error(message, e);
+
         }
         return suppliers;
     }
@@ -72,7 +78,7 @@ public class SupplierRepository implements Repository<Supplier> {
      */
     @Override
     public Optional<Supplier> findById(Long id) {
-        String sql = "SELECT id,name,address,oib FROM SUPPLIER WHERE id = ?";
+        String sql = "SELECT id, name, address, oib FROM SUPPLIER WHERE id = ?";
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setLong(1, id);
@@ -86,8 +92,10 @@ public class SupplierRepository implements Repository<Supplier> {
                     ));
                 }
             }
-        } catch (Exception e) {
-            log.error("Greška prilikom dohvaćanja dobavljača po ID-u!", e);
+        } catch (SQLException | IOException e) {
+            String message = "Greška prilikom dohvaćanja dobavljača po ID-u!";
+            log.error(message, e);
+
         }
         return Optional.empty();
     }
@@ -97,6 +105,12 @@ public class SupplierRepository implements Repository<Supplier> {
      */
     @Override
     public void update(Supplier supplier) {
+        Optional<Supplier> oldSupplierOptional = findById(supplier.getId());
+        if (oldSupplierOptional.isEmpty()) {
+            throw new RepositoryAccessException("Pokušaj ažuriranja dobavljača koji ne postoji.", null);
+        }
+        Supplier oldSupplier = oldSupplierOptional.get();
+
         String sql = "UPDATE SUPPLIER SET name = ?, address = ?, oib = ? WHERE id = ?";
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
@@ -105,8 +119,11 @@ public class SupplierRepository implements Repository<Supplier> {
             stmt.setString(3, supplier.getOib());
             stmt.setLong(4, supplier.getId());
             stmt.executeUpdate();
-        } catch (Exception e) {
-            log.error("Greška prilikom ažuriranja dobavljača!", e);
+            ChangeLogger.logUpdate(oldSupplier, supplier);
+        } catch (SQLException | IOException e) {
+            String message = "Greška prilikom ažuriranja dobavljača!";
+            log.error(message, e);
+
         }
     }
 
@@ -125,21 +142,37 @@ public class SupplierRepository implements Repository<Supplier> {
                     return rs.getInt(1) > 0;
                 }
             }
-        } catch (Exception e) {
-            log.error("Greška prilikom provjere povezanosti dobavljača s fakturama!", e);
+        } catch (SQLException | IOException e) {
+            String message = "Greška prilikom provjere povezanosti dobavljača s fakturama!";
+            log.error(message, e);
+
         }
         return false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void deleteById(Long id) {
+        Optional<Supplier> oldSupplierOptional = findById(id);
+        if (oldSupplierOptional.isEmpty()) {
+            throw new RepositoryAccessException("Pokušaj brisanja dobavljača koji ne postoji.", null);
+        }
+        Supplier oldSupplier = oldSupplierOptional.get();
+
         String sql = "DELETE FROM SUPPLIER WHERE id = ?";
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setLong(1, id);
-            stmt.executeUpdate();
-        } catch (Exception e) {
-            throw new RepositoryAccessException("Brisanje dobavljača nije uspjelo.", e);
+            int affectedRows = stmt.executeUpdate();
+            if (affectedRows > 0) {
+                ChangeLogger.logDeletion(oldSupplier);
+            }
+        } catch (SQLException | IOException e) {
+            String message = "Brisanje dobavljača nije uspjelo.";
+            log.error(message, e);
+
         }
     }
 }

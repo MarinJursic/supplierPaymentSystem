@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -31,7 +32,7 @@ public class InvoiceEditController {
     private Invoice invoiceToEdit = null;
 
     /**
-     * Inicijalizira prozor, popunjava ComboBox-eve s dobavljačima i statusima.
+     * Inicijalizira prozor, popunjava ComboBox-eve i postavlja prikaz za dobavljače.
      */
     public void initialize() {
         supplierComboBox.setItems(FXCollections.observableArrayList(supplierRepository.findAll()));
@@ -40,6 +41,22 @@ public class InvoiceEditController {
                 new InvoiceStatus.Paid(),
                 new InvoiceStatus.Overdue()
         ));
+
+        // Callback za prikaz imena dobavljača u listi
+        Callback<ListView<Supplier>, ListCell<Supplier>> cellFactory = lv -> new ListCell<>() {
+            @Override
+            protected void updateItem(Supplier item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(item.getName());
+                }
+            }
+        };
+
+        supplierComboBox.setCellFactory(cellFactory);
+        supplierComboBox.setButtonCell(cellFactory.call(null)); // Prikaz u odabranom polju
     }
 
     /**

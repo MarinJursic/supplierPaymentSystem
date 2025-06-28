@@ -7,7 +7,7 @@
 
 <BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hr.javafx.projekt.controller.SupplierController">
     <top>
-        <fx:include source="menu.fxml" />
+        <fx:include source="menu.fxml" fx:id="menu" />
     </top>
     <center>
         <VBox spacing="10.0" BorderPane.alignment="CENTER">
@@ -47,4 +47,7 @@
             </HBox>
         </VBox>
     </center>
+    <bottom>
+        <fx:include source="statusbar.fxml" />
+    </bottom>
 </BorderPane>

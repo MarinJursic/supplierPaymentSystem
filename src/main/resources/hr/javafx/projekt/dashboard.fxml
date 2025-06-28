@@ -8,8 +8,7 @@
 
 <BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hr.javafx.projekt.controller.DashboardController">
     <top>
-        <!-- Uključivanje zajedničkog izbornika -->
-        <fx:include source="menu.fxml" />
+        <fx:include source="menu.fxml" fx:id="menu" />
     </top>
     <center>
         <VBox alignment="CENTER" spacing="20.0">
@@ -30,4 +29,7 @@
             </padding>
         </VBox>
     </center>
+    <bottom>
+        <fx:include source="statusbar.fxml" />
+    </bottom>
 </BorderPane>

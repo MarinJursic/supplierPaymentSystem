@@ -9,14 +9,9 @@ import javafx.scene.control.Label;
  */
 public class DashboardController {
 
-    @FXML
-    private Label welcomeLabel;
-
-    @FXML
-    private Label roleLabel;
-
-    @FXML
-    private MenuController menuController; // Injektira se kontroler izbornika
+    @FXML private Label welcomeLabel;
+    @FXML private Label roleLabel;
+    @FXML private MenuController menuController;
 
     /**
      * Inicijalizira dashboard, postavlja poruke dobrodošlice.
@@ -28,8 +23,7 @@ public class DashboardController {
             roleLabel.setText("Prijavljeni ste kao: " + role);
         }
 
-        // Osigurava da se i menuController inicijalizira
-        if(menuController != null) {
+        if (menuController != null) {
             menuController.initialize();
         }
     }
