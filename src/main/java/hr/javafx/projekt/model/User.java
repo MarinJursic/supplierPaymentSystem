@@ -5,7 +5,7 @@ import hr.javafx.projekt.enums.UserRole;
 /**
  * Predstavlja korisnika sustava.
  */
-public final class User extends BaseEntity {
+public non-sealed class User extends Entity {
     private String username;
     private String hashedPassword;
     private UserRole role;

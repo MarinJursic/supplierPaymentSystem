@@ -1,15 +1,22 @@
 package hr.javafx.projekt.controller;
 
+import hr.javafx.projekt.enums.InvoiceStatus;
+import hr.javafx.projekt.exception.RepositoryAccessException;
 import hr.javafx.projekt.model.Invoice;
-import hr.javafx.projekt.model.InvoiceStatus;
 import hr.javafx.projekt.repository.InvoiceRepository;
 import hr.javafx.projekt.session.SessionManager;
+import hr.javafx.projekt.utils.DialogUtils;
 import hr.javafx.projekt.utils.Navigation;
-import javafx.application.Platform;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.util.Duration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,7 +27,7 @@ import java.util.stream.Collectors;
  */
 public class InvoiceController {
 
-    private static InvoiceController activeInstance;
+    private static final Logger log = LoggerFactory.getLogger(InvoiceController.class);
 
     @FXML private TextField invoiceNumberFilterField;
     @FXML private TextField supplierFilterField;
@@ -31,98 +38,104 @@ public class InvoiceController {
     @FXML private TableColumn<Invoice, String> issueDateColumn;
     @FXML private TableColumn<Invoice, String> dueDateColumn;
     @FXML private TableColumn<Invoice, String> statusColumn;
+    @FXML private TableColumn<Invoice, String> remainingDaysColumn;
     @FXML private Button deleteInvoiceButton;
     @FXML private MenuController menuController;
 
     private final InvoiceRepository invoiceRepository = new InvoiceRepository();
+    private Timeline refreshTimeline;
 
     /**
-     * Inicijalizira kontroler, postavlja stupce tablice, bojanje redaka i učitava podatke.
+     * Inicijalizira kontroler, postavlja stupce tablice i pokreće periodično osvježavanje.
      */
     public void initialize() {
-        activeInstance = this;
         if (menuController != null) menuController.initialize();
         if (!SessionManager.isAdmin()) deleteInvoiceButton.setVisible(false);
 
         setupTableColumns();
         setupRowColoring();
         loadAndDisplayInvoices();
+        setupAutoRefresh();
     }
 
+    /**
+     * Konfigurira stupce tablice za prikaz podataka o fakturama.
+     */
     private void setupTableColumns() {
         invoiceNumberColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getInvoiceNumber()));
         supplierColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getSupplier().getName()));
         amountColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getAmount().toString()));
         issueDateColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getIssueDate().toString()));
         dueDateColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getDueDate().toString()));
-        statusColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getStatus().getDescription()));
+        statusColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getStatus().name()));
+        remainingDaysColumn.setCellValueFactory(data -> {
+            Invoice invoice = data.getValue();
+            return new SimpleStringProperty(invoice.getStatus() == InvoiceStatus.UNPAID ?
+                    String.valueOf(invoice.calculateRemainingDays()) : "-");
+        });
     }
 
     /**
-     * Postavlja logiku za bojanje redaka u tablici.
-     * Redci s 'Overdue' statusom bit će obojani crveno.
+     * Postavlja bojanje redaka u tablici ovisno o statusu fakture.
      */
     private void setupRowColoring() {
         invoiceTableView.setRowFactory(tv -> new TableRow<>() {
             @Override
             protected void updateItem(Invoice item, boolean empty) {
                 super.updateItem(item, empty);
-                if (item == null || empty) {
-                    setStyle("");
-                } else if (item.getStatus() instanceof InvoiceStatus.Overdue) {
-                    setStyle("-fx-background-color: #ffcccc;"); // Svijetlo crvena
-                } else {
-                    setStyle("");
-                }
-            }
-        });
-    }
-
-    private void loadAndDisplayInvoices() {
-        List<Invoice> invoices = invoiceRepository.findAll();
-        Platform.runLater(() -> {
-            String invoiceNumberFilter = invoiceNumberFilterField.getText();
-            String supplierFilter = supplierFilterField.getText();
-
-            // Primijeni filtere ako postoje, inače prikaži sve
-            if (!invoiceNumberFilter.isBlank() || !supplierFilter.isBlank()) {
-                handleFilter();
-            } else {
-                invoiceTableView.setItems(FXCollections.observableArrayList(invoices));
+                if (item == null || empty) setStyle("");
+                else if (item.getStatus() == InvoiceStatus.OVERDUE) setStyle("-fx-background-color: #ffcccc;");
+                else setStyle("");
             }
         });
     }
 
     /**
-     * Statička metoda koju poziva pozadinski servis za osvježavanje prikaza.
+     * Postavlja i pokreće Timeline za automatsko osvježavanje podataka.
      */
-    public static void refreshActiveInstance() {
-        if (activeInstance != null) {
-            activeInstance.loadAndDisplayInvoices();
+    private void setupAutoRefresh() {
+        refreshTimeline = new Timeline(new KeyFrame(Duration.seconds(10), e -> loadAndDisplayInvoices()));
+        refreshTimeline.setCycleCount(Animation.INDEFINITE);
+        refreshTimeline.play();
+    }
+
+    /**
+     * Učitava i prikazuje fakture, primjenjujući filtere ako su aktivni.
+     */
+    private void loadAndDisplayInvoices() {
+        if (isFilterActive()) {
+            handleFilter();
+        } else {
+            try {
+                invoiceTableView.setItems(FXCollections.observableArrayList(invoiceRepository.findAll()));
+            } catch (RepositoryAccessException e) {
+                handleRepositoryError("Nije moguće dohvatiti podatke o fakturama.", e);
+            }
         }
     }
 
     /**
-     * Filtrira prikazane fakture na temelju unesenih kriterija.
+     * Filtrira fakture na temelju unesenih kriterija.
      */
-    @FXML
     private void handleFilter() {
-        List<Invoice> allInvoices = invoiceRepository.findAll();
-        String invoiceNumberFilter = invoiceNumberFilterField.getText().toLowerCase();
-        String supplierFilter = supplierFilterField.getText().toLowerCase();
-
-        List<Invoice> filteredList = allInvoices.stream()
-                .filter(invoice -> invoice.getInvoiceNumber().toLowerCase().contains(invoiceNumberFilter))
-                .filter(invoice -> invoice.getSupplier().getName().toLowerCase().contains(supplierFilter))
-                .collect(Collectors.toList());
-
-        invoiceTableView.setItems(FXCollections.observableArrayList(filteredList));
+        if (refreshTimeline != null) refreshTimeline.stop();
+        try {
+            List<Invoice> allInvoices = invoiceRepository.findAll();
+            String invoiceFilter = invoiceNumberFilterField.getText().toLowerCase();
+            String supplierFilter = supplierFilterField.getText().toLowerCase();
+            List<Invoice> filteredList = allInvoices.stream()
+                    .filter(inv -> inv.getInvoiceNumber().toLowerCase().contains(invoiceFilter))
+                    .filter(inv -> inv.getSupplier().getName().toLowerCase().contains(supplierFilter))
+                    .toList();
+            invoiceTableView.setItems(FXCollections.observableArrayList(filteredList));
+        } catch (RepositoryAccessException e) {
+            handleRepositoryError("Nije moguće filtrirati podatke.", e);
+        }
     }
 
     /**
      * Otvara prozor za unos nove fakture.
      */
-    @FXML
     private void handleNewInvoice() {
         showEditDialog(null);
     }
@@ -130,61 +143,51 @@ public class InvoiceController {
     /**
      * Otvara prozor za izmjenu odabrane fakture.
      */
-    @FXML
     private void handleEditInvoice() {
-        Invoice selectedInvoice = invoiceTableView.getSelectionModel().getSelectedItem();
-        if (selectedInvoice != null) {
-            showEditDialog(selectedInvoice);
-        } else {
-            showAlert(Alert.AlertType.WARNING, "Nije odabrana faktura", "Molimo odaberite fakturu za izmjenu.");
-        }
+        Invoice selected = invoiceTableView.getSelectionModel().getSelectedItem();
+        if (selected != null) showEditDialog(selected);
+        else DialogUtils.showWarning("Nije odabrana faktura", "Molimo odaberite fakturu za izmjenu.");
     }
 
     /**
      * Briše odabranu fakturu nakon potvrde.
      */
-    @FXML
     private void handleDeleteInvoice() {
-        Invoice selectedInvoice = invoiceTableView.getSelectionModel().getSelectedItem();
-        if (selectedInvoice != null) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Jeste li sigurni da želite obrisati ovu fakturu?", ButtonType.YES, ButtonType.NO);
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.isPresent() && result.get() == ButtonType.YES) {
-                invoiceRepository.deleteById(selectedInvoice.getId());
-                loadAndDisplayInvoices(); // Osvježi prikaz
+        Invoice selected = invoiceTableView.getSelectionModel().getSelectedItem();
+        if (selected == null) {
+            DialogUtils.showWarning("Nije odabrana faktura", "Molimo odaberite fakturu za brisanje.");
+            return;
+        }
+        if (DialogUtils.showConfirmation("Potvrda brisanja", "Jeste li sigurni da želite obrisati ovu fakturu?")) {
+            try {
+                invoiceRepository.deleteById(selected.getId());
+                loadAndDisplayInvoices();
+            } catch (RepositoryAccessException e) {
+                handleRepositoryError("Brisanje fakture nije uspjelo.", e);
             }
-        } else {
-            showAlert(Alert.AlertType.WARNING, "Nije odabrana faktura", "Molimo odaberite fakturu za brisanje.");
         }
     }
 
     /**
-     * Ručno osvježava prikaz tablice.
+     * Prikazuje modalni prozor za dodavanje ili izmjenu fakture.
+     * @param invoice Faktura za izmjenu, ili null ako se dodaje nova.
      */
-    @FXML
-    private void handleRefresh() {
-        loadAndDisplayInvoices();
-    }
-
     private void showEditDialog(Invoice invoice) {
         String title = (invoice == null) ? "Dodaj Novu Fakturu" : "Izmijeni Fakturu";
-        Optional<Navigation.Popup<InvoiceEditController>> popupOptional = Navigation.createPopup("invoice_edit.fxml", title);
-
-        if (popupOptional.isPresent()) {
-            Navigation.Popup<InvoiceEditController> popup = popupOptional.get();
-            if (invoice != null) {
-                popup.controller().setInvoiceToEdit(invoice);
-            }
+        Optional<Navigation.Popup<InvoiceEditController>> popupOpt = Navigation.createPopup("invoice_edit.fxml", title);
+        popupOpt.ifPresent(popup -> {
+            if (invoice != null) popup.controller().setInvoiceToEdit(invoice);
             popup.stage().showAndWait();
             loadAndDisplayInvoices();
-        }
+        });
     }
 
-    private void showAlert(Alert.AlertType alertType, String title, String content) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(content);
-        alert.showAndWait();
+    private boolean isFilterActive() {
+        return !invoiceNumberFilterField.getText().isBlank() || !supplierFilterField.getText().isBlank();
+    }
+
+    private void handleRepositoryError(String message, RepositoryAccessException e) {
+        log.error(message, e);
+        DialogUtils.showError("Greška", message);
     }
 }

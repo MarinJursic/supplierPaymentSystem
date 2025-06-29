@@ -1,4 +1,4 @@
-package hr.javafx.projekt.generics;
+package hr.javafx.projekt.repository;
 
 /**
  * Generička klasa koja pohranjuje par vrijednosti.

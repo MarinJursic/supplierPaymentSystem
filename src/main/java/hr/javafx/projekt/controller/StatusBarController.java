@@ -18,10 +18,14 @@ public class StatusBarController {
 
     /**
      * Inicijalizira kontroler i povezuje UI elemente na centralno stanje.
+     * Dohvaća statičku instancu StatusBarState iz MainApplication klase.
      */
     public void initialize() {
+        // Dohvaćamo JEDINSTVENU statičku instancu stanja iz glavne aplikacije
         StatusBarState state = MainApplication.getStatusBarState();
+
         if (state != null) {
+            // Povezujemo (bind) svojstva UI elemenata na svojstva centralnog stanja
             statusProgressBar.progressProperty().bind(state.progressProperty());
             lastUpdateLabel.textProperty().bind(state.lastUpdateTextProperty());
         }

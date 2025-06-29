@@ -3,7 +3,7 @@ package hr.javafx.projekt.model;
 /**
  * Predstavlja dobavljača u sustavu.
  */
-public final class Supplier extends BaseEntity {
+public non-sealed class Supplier extends Entity {
     private String name;
     private String address;
     private String oib;

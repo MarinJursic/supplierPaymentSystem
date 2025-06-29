@@ -1,11 +1,11 @@
 package hr.javafx.projekt.controller;
-
 import hr.javafx.projekt.enums.UserRole;
 import hr.javafx.projekt.exception.InvalidLoginException;
+import hr.javafx.projekt.exception.RepositoryAccessException;
+import hr.javafx.projekt.repository.Pair;
 import hr.javafx.projekt.repository.UserRepository;
 import hr.javafx.projekt.session.SessionManager;
 import hr.javafx.projekt.utils.Navigation;
-import hr.javafx.projekt.generics.Pair;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -19,13 +19,18 @@ import java.util.Optional;
  */
 public class LoginController {
 
+    private static final Logger log = LoggerFactory.getLogger(LoginController.class);
+
     @FXML private TextField usernameField;
     @FXML private PasswordField passwordField;
     @FXML private Label errorLabel;
 
     private final UserRepository userRepository = new UserRepository();
-    private static final Logger log = LoggerFactory.getLogger(LoginController.class);
 
+    /**
+     * Rukuje pokušajem prijave korisnika.
+     * Provjerava unesene podatke i, ako su ispravni, pokreće sesiju i preusmjerava na dashboard.
+     */
     @FXML
     private void handleLogin() {
         String username = usernameField.getText();
@@ -33,19 +38,28 @@ public class LoginController {
 
         try {
             Optional<Pair<Long, UserRole>> userOptional = userRepository.authenticate(username, password);
-            userOptional.ifPresent(user -> {
+
+            if (userOptional.isPresent()) {
+                Pair<Long, UserRole> user = userOptional.get();
                 SessionManager.login(user.getKey(), user.getValue());
                 Navigation.showScene("dashboard.fxml", "Dashboard - Supplier Payment System");
-            });
+            } else {
+                // Iako authenticate baca InvalidLoginException, ovo je dodatna sigurnost
+                errorLabel.setText("Neispravno korisničko ime ili lozinka.");
+                log.warn("Neuspješan pokušaj prijave za korisnika: {}", username);
+            }
         } catch (InvalidLoginException e) {
             errorLabel.setText(e.getMessage());
-            log.warn("Neuspješan pokušaj prijave za korisnika: {}", username);
-        } catch (Exception e) {
-            errorLabel.setText("Dogodila se sistemska greška.");
-            log.error("Sistemska greška pri prijavi.", e);
+            log.warn("Neuspješan pokušaj prijave za korisnika: {}", username, e);
+        } catch (RepositoryAccessException e) {
+            errorLabel.setText("Greška pri pristupu podacima. Pokušajte ponovno.");
+            log.error("Greška repozitorija prilikom prijave.", e);
         }
     }
 
+    /**
+     * Prikazuje ekran za registraciju novog korisnika.
+     */
     @FXML
     private void showRegistrationScreen() {
         Navigation.showScene("registration.fxml", "Registracija");

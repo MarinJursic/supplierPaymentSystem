@@ -16,7 +16,7 @@ import java.util.Optional;
 /**
  * Implementacija repozitorija za rad s dobavljačima u bazi podataka.
  */
-public class SupplierRepository implements Repository<Supplier> {
+public class SupplierRepository extends AbstractRepository<Supplier> {
 
     private static final Logger log = LoggerFactory.getLogger(SupplierRepository.class);
 
@@ -42,7 +42,8 @@ public class SupplierRepository implements Repository<Supplier> {
         } catch (SQLException | IOException e) {
             String message = "Greška prilikom spremanja dobavljača!";
             log.error(message, e);
-
+            // Bacamo iznimku prema višem sloju (kontroleru)
+            throw new RepositoryAccessException(message, e);
         }
         return supplier;
     }
@@ -68,7 +69,7 @@ public class SupplierRepository implements Repository<Supplier> {
         } catch (SQLException | IOException e) {
             String message = "Greška prilikom dohvaćanja svih dobavljača!";
             log.error(message, e);
-
+            throw new RepositoryAccessException(message, e);
         }
         return suppliers;
     }
@@ -95,7 +96,7 @@ public class SupplierRepository implements Repository<Supplier> {
         } catch (SQLException | IOException e) {
             String message = "Greška prilikom dohvaćanja dobavljača po ID-u!";
             log.error(message, e);
-
+            throw new RepositoryAccessException(message, e);
         }
         return Optional.empty();
     }
@@ -123,7 +124,7 @@ public class SupplierRepository implements Repository<Supplier> {
         } catch (SQLException | IOException e) {
             String message = "Greška prilikom ažuriranja dobavljača!";
             log.error(message, e);
-
+            throw new RepositoryAccessException(message, e);
         }
     }
 
@@ -145,7 +146,7 @@ public class SupplierRepository implements Repository<Supplier> {
         } catch (SQLException | IOException e) {
             String message = "Greška prilikom provjere povezanosti dobavljača s fakturama!";
             log.error(message, e);
-
+            throw new RepositoryAccessException(message, e);
         }
         return false;
     }
@@ -172,7 +173,7 @@ public class SupplierRepository implements Repository<Supplier> {
         } catch (SQLException | IOException e) {
             String message = "Brisanje dobavljača nije uspjelo.";
             log.error(message, e);
-
+            throw new RepositoryAccessException(message, e);
         }
     }
 }

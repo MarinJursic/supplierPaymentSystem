@@ -1,6 +1,6 @@
 package hr.javafx.projekt.utils;
 
-import hr.javafx.projekt.model.BaseEntity;
+import hr.javafx.projekt.model.Entity;
 import hr.javafx.projekt.model.ChangeLogEntry;
 import hr.javafx.projekt.repository.ChangeLogRepository;
 import hr.javafx.projekt.session.SessionManager;
@@ -29,7 +29,7 @@ public final class ChangeLogger {
      * @param newEntity Novi entitet koji je dodan.
      * @param <T> Tip entiteta.
      */
-    public static <T extends BaseEntity> void logAddition(T newEntity) {
+    public static <T extends Entity> void logAddition(T newEntity) {
         if (newEntity == null) return;
         logChange("ADD", newEntity.getClass().getSimpleName(), "N/A", "N/A", newEntity.toString());
     }
@@ -39,7 +39,7 @@ public final class ChangeLogger {
      * @param oldEntity Entitet koji je obrisan.
      * @param <T> Tip entiteta.
      */
-    public static <T extends BaseEntity> void logDeletion(T oldEntity) {
+    public static <T extends Entity> void logDeletion(T oldEntity) {
         if (oldEntity == null) return;
         logChange("DELETE", oldEntity.getClass().getSimpleName(), "N/A", oldEntity.toString(), "N/A");
     }
@@ -50,7 +50,7 @@ public final class ChangeLogger {
      * @param newEntity Novo stanje entiteta.
      * @param <T> Tip entiteta.
      */
-    public static <T extends BaseEntity> void logUpdate(T oldEntity, T newEntity) {
+    public static <T extends Entity> void logUpdate(T oldEntity, T newEntity) {
         if (oldEntity == null || newEntity == null) return;
 
         for (Method method : oldEntity.getClass().getMethods()) {

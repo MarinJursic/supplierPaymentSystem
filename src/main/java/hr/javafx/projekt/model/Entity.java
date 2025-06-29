@@ -1,15 +1,13 @@
 package hr.javafx.projekt.model;
 
-import java.io.Serializable;
-
 /**
  * Zapečaćena (sealed) klasa koja služi kao osnova za sve entitete.
  * Sadrži zajedničko svojstvo 'id' i implementira Serializable.
  */
-public sealed class BaseEntity implements Serializable permits Supplier, Invoice, User {
+public sealed class Entity permits Supplier, Invoice, User {
     private Long id;
 
-    public BaseEntity(Long id) {
+    public Entity(Long id) {
         this.id = id;
     }
 

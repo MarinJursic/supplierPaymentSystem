@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hr.javafx.projekt.controller.InvoiceController">
+<BorderPane prefHeight="600.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hr.javafx.projekt.controller.InvoiceController">
     <top>
         <fx:include source="menu.fxml" fx:id="menu" />
     </top>
@@ -45,13 +45,14 @@
                     <TableColumn fx:id="issueDateColumn" prefWidth="120.0" text="Datum izdavanja" />
                     <TableColumn fx:id="dueDateColumn" prefWidth="120.0" text="Datum dospijeća" />
                     <TableColumn fx:id="statusColumn" prefWidth="100.0" text="Status" />
+
+                    <TableColumn fx:id="remainingDaysColumn" prefWidth="120.0" text="Preostalo dana" />
                 </columns>
             </TableView>
             <HBox alignment="CENTER_RIGHT" spacing="10.0">
                 <Button onAction="#handleNewInvoice" text="Nova Faktura" />
                 <Button onAction="#handleEditInvoice" text="Izmijeni Fakturu" />
                 <Button fx:id="deleteInvoiceButton" onAction="#handleDeleteInvoice" text="Obriši Fakturu" />
-
             </HBox>
         </VBox>
     </center>

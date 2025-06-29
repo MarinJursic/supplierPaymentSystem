@@ -1,12 +1,16 @@
 package hr.javafx.projekt.controller;
 
+import hr.javafx.projekt.exception.RepositoryAccessException;
 import hr.javafx.projekt.model.Supplier;
 import hr.javafx.projekt.repository.SupplierRepository;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
+import java.util.Optional;
 
 /**
  * Kontroler za prozor za dodavanje i izmjenu dobavljača.
@@ -27,7 +31,7 @@ public class SupplierEditController {
      */
     public void setSupplierToEdit(Supplier supplier) {
         this.supplierToEdit = supplier;
-        populateFormFields(); // Pozivamo metodu za popunjavanje polja
+        populateFormFields();
     }
 
     /**
@@ -46,23 +50,36 @@ public class SupplierEditController {
             return;
         }
 
-        String name = nameField.getText();
-        String address = addressField.getText();
-        String oib = oibField.getText();
-
+        // AŽURIRANJE - DODAJEMO POTVRDU
         if (supplierToEdit != null) {
-            // AŽURIRANJE POSTOJEĆEG
-            supplierToEdit.setName(name);
-            supplierToEdit.setAddress(address);
-            supplierToEdit.setOib(oib);
-            supplierRepository.update(supplierToEdit);
-        } else {
-            // KREIRANJE NOVOG
-            Supplier newSupplier = new Supplier(null, name, address, oib);
-            supplierRepository.save(newSupplier);
-        }
+            Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmation.setTitle("Potvrda izmjene");
+            confirmation.setHeaderText("Jeste li sigurni da želite spremiti promjene za ovog dobavljača?");
+            Optional<ButtonType> result = confirmation.showAndWait();
 
-        closeWindow();
+            // Nastavljamo samo ako je korisnik kliknuo "OK" (ili YES)
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                try {
+                    supplierToEdit.setName(nameField.getText());
+                    supplierToEdit.setAddress(addressField.getText());
+                    supplierToEdit.setOib(oibField.getText());
+                    supplierRepository.update(supplierToEdit);
+
+                    closeWindow(); // Uspjeh -> zatvori prozor za izmjenu
+                } catch (RepositoryAccessException e) {
+                    handleRepositoryError(e); // Greška -> prikaži poruku, prozor ostaje otvoren
+                }
+            }
+        } else {
+            // KREIRANJE NOVOG - ne treba potvrda
+            try {
+                Supplier newSupplier = new Supplier(null, nameField.getText(), addressField.getText(), oibField.getText());
+                supplierRepository.save(newSupplier);
+                closeWindow();
+            } catch (RepositoryAccessException e) {
+                handleRepositoryError(e);
+            }
+        }
     }
 
     @FXML
@@ -89,13 +106,26 @@ public class SupplierEditController {
         }
 
         if (!errorMessage.isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Neispravan unos");
-            alert.setHeaderText("Molimo ispravite greške:");
-            alert.setContentText(errorMessage.toString());
-            alert.showAndWait();
+            showAlert(Alert.AlertType.ERROR, "Neispravan unos", errorMessage.toString());
             return false;
         }
         return true;
+    }
+
+    private void showAlert(Alert.AlertType alertType, String title, String content) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
+    private void handleRepositoryError(RepositoryAccessException e) {
+        Throwable cause = e.getCause();
+        if (cause instanceof java.sql.SQLException && ((java.sql.SQLException) cause).getSQLState().equals("23505")) {
+            showAlert(Alert.AlertType.ERROR, "Greška pri spremanju", "Dobavljač s tim OIB-om već postoji!");
+        } else {
+            showAlert(Alert.AlertType.ERROR, "Greška pri spremanju", "Spremanje nije uspjelo. Provjerite log za detalje.");
+        }
     }
 }

@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 /**
- * Kontroler za glavni (dashboard) ekran.
+ * Kontroler za glavni (dashboard) ekran aplikacije.
  */
 public class DashboardController {
 
@@ -14,7 +14,9 @@ public class DashboardController {
     @FXML private MenuController menuController;
 
     /**
-     * Inicijalizira dashboard, postavlja poruke dobrodošlice.
+     * Inicijalizira dashboard.
+     * Postavlja poruke dobrodošlice i rolu prijavljenog korisnika.
+     * Također inicijalizira ugniježđeni menu kontroler.
      */
     public void initialize() {
         if (SessionManager.getLoggedInUserId() != null) {

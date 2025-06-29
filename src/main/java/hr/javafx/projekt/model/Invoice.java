@@ -1,12 +1,15 @@
 package hr.javafx.projekt.model;
 
+import hr.javafx.projekt.enums.InvoiceStatus;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 /**
  * Predstavlja fakturu. Koristi Builder Pattern za kreiranje objekata.
+ * Implementira Payable i zapečaćeno sučelje DueDatable.
  */
-public final class Invoice extends BaseEntity implements Payable {
+public final class Invoice extends Entity implements Payable, DueDatable {
     private String invoiceNumber;
     private LocalDate issueDate;
     private LocalDate dueDate;
@@ -34,6 +37,19 @@ public final class Invoice extends BaseEntity implements Payable {
     @Override
     public BigDecimal getAmountPayable() {
         return this.amount;
+    }
+
+    /**
+     * Implementacija metode iz DueDatable sučelja.
+     * Izračunava preostale dane do dospijeća samo za neplaćene fakture.
+     * @return Broj preostalih dana, ili 0 za plaćene/dospjele.
+     */
+    @Override
+    public long calculateRemainingDays() {
+        if (this.status == InvoiceStatus.UNPAID) {
+            return ChronoUnit.DAYS.between(LocalDate.now(), this.dueDate);
+        }
+        return 0;
     }
 
     /**
@@ -70,10 +86,6 @@ public final class Invoice extends BaseEntity implements Payable {
             return this;
         }
 
-        /**
-         * Kreira i vraća novu instancu klase Invoice.
-         * @return Kreirana instanca fakture.
-         */
         public Invoice build() {
             return new Invoice(this);
         }
@@ -82,6 +94,6 @@ public final class Invoice extends BaseEntity implements Payable {
     @Override
     public String toString() {
         return String.format("Invoice[invoiceNumber=%s, amount=%s, supplier=%s, status=%s]",
-                invoiceNumber, amount, supplier.getName(), status.getDescription());
+                invoiceNumber, amount, supplier.getName(), status.name());
     }
 }

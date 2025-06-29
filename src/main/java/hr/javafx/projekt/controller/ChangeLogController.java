@@ -33,11 +33,19 @@ public class ChangeLogController {
      * Inicijalizira kontroler, postavlja stupce tablice i učitava podatke.
      */
     public void initialize() {
+        setupTableColumns();
+        setupRowClickListener();
+        loadChanges();
+    }
+
+    /**
+     * Konfigurira stupce tablice i način prikaza podataka.
+     */
+    private void setupTableColumns() {
         timestampColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().timestamp().format(FORMATTER)));
         changeTypeColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().changeType()));
         entityNameColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().entityName()));
         userRoleColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().userRole()));
-
 
         detailsColumn.setCellValueFactory(data -> {
             ChangeLogEntry entry = data.getValue();
@@ -55,16 +63,19 @@ public class ChangeLogController {
             };
             return new SimpleStringProperty(details);
         });
-
-        setupRowClickListener();
-        loadChanges();
     }
 
+    /**
+     * Učitava zapise o promjenama iz repozitorija i prikazuje ih u tablici.
+     */
     private void loadChanges() {
         List<ChangeLogEntry> changes = changeLogRepository.readChanges();
         changeLogTableView.setItems(FXCollections.observableArrayList(changes));
     }
 
+    /**
+     * Postavlja osluškivač za dvostruki klik na redak tablice, što otvara detalje promjene.
+     */
     private void setupRowClickListener() {
         changeLogTableView.setRowFactory(tv -> {
             TableRow<ChangeLogEntry> row = new TableRow<>();
@@ -78,6 +89,11 @@ public class ChangeLogController {
         });
     }
 
+    /**
+     * Prikazuje popup prozor s detaljima odabranog zapisa o promjeni.
+     *
+     * @param entry Zapis o promjeni za koji se prikazuju detalji.
+     */
     private void showDetailsPopup(ChangeLogEntry entry) {
         Optional<Navigation.Popup<ChangeLogDetailsController>> popupOptional =
                 Navigation.createPopup("changelog_details.fxml", "Detalji Promjene");

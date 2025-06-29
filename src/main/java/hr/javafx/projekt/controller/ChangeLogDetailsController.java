@@ -22,13 +22,14 @@ public class ChangeLogDetailsController {
     @FXML private Label timestampLabel;
     @FXML private Label userRoleLabel;
     @FXML private Label changeDetailsLabel;
-    @FXML private VBox oldValueBox; // Ispravno, ovo je VBox
-    @FXML private VBox newValueBox; // Ispravno, ovo je VBox
+    @FXML private VBox oldValueBox;
+    @FXML private VBox newValueBox;
 
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy. HH:mm:ss");
 
     /**
-     * Postavlja podatke o promjeni i dinamički popunjava UI.
+     * Postavlja podatke o promjeni i dinamički popunjava korisničko sučelje.
+     *
      * @param entry Zapis o promjeni koji se prikazuje.
      */
     public void setChangeLogEntry(ChangeLogEntry entry) {
@@ -57,27 +58,39 @@ public class ChangeLogDetailsController {
         }
     }
 
+    /**
+     * Prikazuje podatke za akciju dodavanja novog entiteta.
+     *
+     * @param entry Zapis o promjeni.
+     */
     private void displayAdded(ChangeLogEntry entry) {
         oldValueBox.getChildren().add(new Label("Nema stare vrijednosti."));
-        // Parsiramo novi objekt da ga lijepo prikažemo
         Map<String, String> newValues = parseStringToObjectMap(entry.newValue());
         newValues.forEach((key, value) ->
                 newValueBox.getChildren().add(createStyledLabel(key + ": " + value, "green")));
     }
 
+    /**
+     * Prikazuje podatke za akciju brisanja entiteta.
+     *
+     * @param entry Zapis o promjeni.
+     */
     private void displayDeleted(ChangeLogEntry entry) {
-        // Parsiramo stari objekt
         Map<String, String> oldValues = parseStringToObjectMap(entry.oldValue());
         oldValues.forEach((key, value) ->
                 oldValueBox.getChildren().add(createStyledLabel(key + ": " + value, "red")));
         newValueBox.getChildren().add(new Label("Nema nove vrijednosti."));
     }
 
+    /**
+     * Prikazuje podatke za akciju ažuriranja entiteta, ističući promijenjena polja.
+     *
+     * @param entry Zapis o promjeni.
+     */
     private void displayUpdated(ChangeLogEntry entry) {
         Map<String, String> oldValues = parseStringToObjectMap(entry.oldValue());
         Map<String, String> newValues = parseStringToObjectMap(entry.newValue());
 
-        // Koristimo zajednički skup ključeva da prođemo kroz sva polja
         oldValues.keySet().forEach(key -> {
             String oldValue = oldValues.getOrDefault(key, "N/A");
             String newValue = newValues.getOrDefault(key, "N/A");
@@ -97,12 +110,25 @@ public class ChangeLogDetailsController {
         });
     }
 
+    /**
+     * Kreira stiliziranu labelu s određenom bojom teksta.
+     *
+     * @param text Tekst labele.
+     * @param color Boja teksta (npr. "green" ili "red").
+     * @return Stilizirana Labela.
+     */
     private Label createStyledLabel(String text, String color) {
         Label label = new Label(text);
         label.setStyle("-fx-text-fill: " + color + "; -fx-font-weight: bold;");
         return label;
     }
 
+    /**
+     * Parsira string reprezentaciju objekta (npr. "Supplier[name=Test, address=Adresa]") u mapu ključ-vrijednost.
+     *
+     * @param objectString String za parsiranje.
+     * @return Mapa s atributima i njihovim vrijednostima.
+     */
     private Map<String, String> parseStringToObjectMap(String objectString) {
         Map<String, String> map = new HashMap<>();
         if (objectString == null || objectString.isBlank() || !objectString.contains("[")) {

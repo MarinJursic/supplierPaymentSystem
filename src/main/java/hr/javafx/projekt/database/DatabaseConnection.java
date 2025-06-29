@@ -10,17 +10,24 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 /**
- * Upravlja konekcijom prema bazi podataka.
+ * Upravlja konekcijom s bazom podataka.
  */
 public class DatabaseConnection {
 
     private static final Logger log = LoggerFactory.getLogger(DatabaseConnection.class);
 
     /**
-     * Uspostavlja i vraća novu konekciju prema bazi podataka.
-     * @return Objekt nove konekcije.
+     * Privatni konstruktor sprječava instanciranje.
+     */
+    private DatabaseConnection() {
+    }
+
+    /**
+     * Uspostavlja konekciju s bazom podataka.
+     *
+     * @return Objekt konekcije.
      * @throws SQLException Ako dođe do greške pri spajanju.
-     * @throws IOException Ako dođe do greške pri čitanju konfiguracijske datoteke.
+     * @throws IOException Ako dođe do greške pri čitanju datoteke.
      */
     public static Connection getConnection() throws SQLException, IOException {
         Properties props = new Properties();
@@ -33,5 +40,22 @@ public class DatabaseConnection {
                 props.getProperty("username"),
                 props.getProperty("password")
         );
+    }
+
+    /**
+     * Zatvara proslijeđenu konekciju.
+     *
+     * @param connection Konekcija koju treba zatvoriti.
+     */
+    public static void closeConnection(Connection connection) {
+        if (connection != null) {
+            try {
+                if (!connection.isClosed()) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                log.error("Greška prilikom zatvaranja konekcije s bazom podataka.", e);
+            }
+        }
     }
 }

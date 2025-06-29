@@ -37,7 +37,6 @@ public class ChangeLogRepository {
      * Metoda je sinkronizirana kako bi se osigurala cjelovitost podataka pri višenitnom pristupu.
      * @return Lista svih zapisa o promjenama.
      */
-    @SuppressWarnings("unchecked")
     public synchronized List<ChangeLogEntry> readChanges() {
         File file = new File(FILE_NAME);
         if (!file.exists()) {
@@ -47,7 +46,7 @@ public class ChangeLogRepository {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
             return (List<ChangeLogEntry>) ois.readObject();
         } catch (EOFException e) {
-            return new ArrayList<>(); // Datoteka je prazna
+            return new ArrayList<>();
         } catch (IOException | ClassNotFoundException e) {
             log.error("Greška prilikom deserijalizacije zapisa o promjenama.", e);
             return new ArrayList<>();
