@@ -1,4 +1,5 @@
 package hr.javafx.projekt.controller;
+
 import hr.javafx.projekt.enums.UserRole;
 import hr.javafx.projekt.exception.InvalidLoginException;
 import hr.javafx.projekt.exception.RepositoryAccessException;
@@ -12,6 +13,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.util.Optional;
 
 /**
@@ -44,7 +46,6 @@ public class LoginController {
                 SessionManager.login(user.getKey(), user.getValue());
                 Navigation.showScene("dashboard.fxml", "Dashboard - Supplier Payment System");
             } else {
-                // Iako authenticate baca InvalidLoginException, ovo je dodatna sigurnost
                 errorLabel.setText("Neispravno korisničko ime ili lozinka.");
                 log.warn("Neuspješan pokušaj prijave za korisnika: {}", username);
             }

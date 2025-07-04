@@ -9,14 +9,10 @@ import hr.javafx.projekt.repository.SupplierRepository;
 import hr.javafx.projekt.utils.DialogUtils;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import javafx.util.StringConverter; // Potreban import
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -53,21 +49,29 @@ public class InvoiceEditController {
         }
         statusComboBox.setItems(FXCollections.observableArrayList(InvoiceStatus.values()));
 
-        Callback<ListView<Supplier>, ListCell<Supplier>> cellFactory = lv -> new ListCell<>() {
+        supplierComboBox.setCellFactory(lv -> new ListCell<>() {
             @Override
             protected void updateItem(Supplier item, boolean empty) {
                 super.updateItem(item, empty);
-                setText(empty || item == null ? null : item.getName());
+                setText(empty || item == null ? "" : item.getName());
             }
-        };
+        });
 
-        supplierComboBox.setCellFactory(cellFactory);
-        supplierComboBox.setButtonCell(cellFactory.call(null));
+        supplierComboBox.setConverter(new StringConverter<>() {
+            @Override
+            public String toString(Supplier supplier) {
+                return supplier == null ? "" : supplier.getName();
+            }
+
+            @Override
+            public Supplier fromString(String string) {
+                return null;
+            }
+        });
     }
 
     /**
      * Postavlja podatke fakture za izmjenu i popunjava polja u formi.
-     * @param invoice Faktura koja se mijenja.
      */
     public void setInvoiceToEdit(Invoice invoice) {
         this.invoiceToEdit = invoice;
@@ -83,6 +87,7 @@ public class InvoiceEditController {
     /**
      * Rukuje spremanjem podataka. Validira unos i sprema novu ili ažurira postojeću fakturu.
      */
+    @FXML
     private void handleSave() {
         if (!isInputValid()) {
             return;
@@ -121,6 +126,7 @@ public class InvoiceEditController {
     /**
      * Zatvara prozor bez spremanja promjena.
      */
+    @FXML
     private void handleCancel() {
         closeWindow();
     }
@@ -134,7 +140,6 @@ public class InvoiceEditController {
 
     /**
      * Provjerava jesu li svi uneseni podaci ispravni.
-     * @return True ako je unos ispravan, inače false.
      */
     private boolean isInputValid() {
         StringBuilder errorMessage = new StringBuilder();
@@ -170,8 +175,6 @@ public class InvoiceEditController {
 
     /**
      * Centralizirano rukuje greškama iz repozitorija i prikazuje odgovarajuću poruku.
-     * @param defaultMessage Poruka koja se prikazuje ako greška nije specifična.
-     * @param e Iznimka uhvaćena iz repozitorija.
      */
     private void handleRepositoryError(String defaultMessage, RepositoryAccessException e) {
         log.error(defaultMessage, e);

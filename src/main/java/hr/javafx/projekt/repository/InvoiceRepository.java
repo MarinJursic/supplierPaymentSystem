@@ -5,6 +5,7 @@ import hr.javafx.projekt.enums.InvoiceStatus;
 import hr.javafx.projekt.exception.RepositoryAccessException;
 import hr.javafx.projekt.model.Invoice;
 import hr.javafx.projekt.model.Supplier;
+import hr.javafx.projekt.utils.ChangeLogger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,15 +16,18 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Implementacija repozitorija za rad s fakturama u bazi podataka.
+ * Upravlja operacijama nad fakturama u bazi podataka.
  */
 public class InvoiceRepository extends AbstractRepository<Invoice> {
 
     private static final Logger log = LoggerFactory.getLogger(InvoiceRepository.class);
     private final AbstractRepository<Supplier> supplierRepository = new SupplierRepository();
 
+    /**
+     * Sprema novu fakturu u bazu i bilježi promjenu.
+     */
     @Override
-    public Invoice save(Invoice invoice) {
+    public Invoice save(Invoice invoice) throws RepositoryAccessException {
         String sql = "INSERT INTO INVOICE (invoice_number, issue_date, due_date, amount, status, supplier_id) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -38,6 +42,7 @@ public class InvoiceRepository extends AbstractRepository<Invoice> {
             try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
                     invoice.setId(generatedKeys.getLong(1));
+                    ChangeLogger.logAddition(invoice);
                 }
             }
         } catch (SQLException | IOException e) {
@@ -48,8 +53,11 @@ public class InvoiceRepository extends AbstractRepository<Invoice> {
         return invoice;
     }
 
+    /**
+     * Dohvaća sve fakture iz baze.
+     */
     @Override
-    public List<Invoice> findAll() {
+    public List<Invoice> findAll() throws RepositoryAccessException {
         List<Invoice> invoices = new ArrayList<>();
         String sql = "SELECT * FROM INVOICE";
         try (Connection connection = DatabaseConnection.getConnection();
@@ -66,8 +74,11 @@ public class InvoiceRepository extends AbstractRepository<Invoice> {
         return invoices;
     }
 
+    /**
+     * Pronalazi fakturu prema ID-u.
+     */
     @Override
-    public Optional<Invoice> findById(Long id) {
+    public Optional<Invoice> findById(Long id) throws RepositoryAccessException {
         String sql = "SELECT * FROM INVOICE WHERE id = ?";
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
@@ -85,8 +96,17 @@ public class InvoiceRepository extends AbstractRepository<Invoice> {
         return Optional.empty();
     }
 
+    /**
+     * Ažurira postojeću fakturu u bazi i bilježi promjenu.
+     */
     @Override
-    public void update(Invoice invoice) {
+    public void update(Invoice invoice) throws RepositoryAccessException {
+        Optional<Invoice> oldInvoiceOptional = findById(invoice.getId());
+        if (oldInvoiceOptional.isEmpty()) {
+            throw new RepositoryAccessException("Pokušaj ažuriranja fakture koja ne postoji (ID: " + invoice.getId() + ").");
+        }
+        Invoice oldInvoice = oldInvoiceOptional.get();
+
         String sql = "UPDATE INVOICE SET invoice_number = ?, issue_date = ?, due_date = ?, amount = ?, status = ?, supplier_id = ? WHERE id = ?";
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
@@ -98,6 +118,7 @@ public class InvoiceRepository extends AbstractRepository<Invoice> {
             stmt.setLong(6, invoice.getSupplier().getId());
             stmt.setLong(7, invoice.getId());
             stmt.executeUpdate();
+            ChangeLogger.logUpdate(oldInvoice, invoice);
         } catch (SQLException | IOException e) {
             String message = "Greška prilikom ažuriranja fakture!";
             log.error(message, e);
@@ -105,13 +126,25 @@ public class InvoiceRepository extends AbstractRepository<Invoice> {
         }
     }
 
+    /**
+     * Briše fakturu iz baze i bilježi promjenu.
+     */
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(Long id) throws RepositoryAccessException {
+        Optional<Invoice> oldInvoiceOptional = findById(id);
+        if (oldInvoiceOptional.isEmpty()) {
+            throw new RepositoryAccessException("Pokušaj brisanja fakture koja ne postoji (ID: " + id + ").");
+        }
+        Invoice oldInvoice = oldInvoiceOptional.get();
+
         String sql = "DELETE FROM INVOICE WHERE id = ?";
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setLong(1, id);
-            stmt.executeUpdate();
+            int affectedRows = stmt.executeUpdate();
+            if (affectedRows > 0) {
+                ChangeLogger.logDeletion(oldInvoice);
+            }
         } catch (SQLException | IOException e) {
             String message = "Greška prilikom brisanja fakture!";
             log.error(message, e);
@@ -119,6 +152,9 @@ public class InvoiceRepository extends AbstractRepository<Invoice> {
         }
     }
 
+    /**
+     * Pomoćna metoda za mapiranje jednog retka iz ResultSet-a u Invoice objekt.
+     */
     private Optional<Invoice> mapResultSetToInvoice(ResultSet rs) throws SQLException {
         Optional<Supplier> supplierOptional = supplierRepository.findById(rs.getLong("supplier_id"));
         if (supplierOptional.isEmpty()) {

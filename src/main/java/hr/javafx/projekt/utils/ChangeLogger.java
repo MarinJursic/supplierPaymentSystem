@@ -1,7 +1,7 @@
 package hr.javafx.projekt.utils;
 
-import hr.javafx.projekt.model.Entity;
 import hr.javafx.projekt.model.ChangeLogEntry;
+import hr.javafx.projekt.model.Entity;
 import hr.javafx.projekt.repository.ChangeLogRepository;
 import hr.javafx.projekt.session.SessionManager;
 import org.slf4j.Logger;
@@ -15,7 +15,7 @@ import java.util.Objects;
 
 /**
  * Uslužna klasa za generiranje i spremanje zapisa o promjenama entiteta.
- * Koristi refleksiju nad javnim getter metodama kako bi se poštovala enkapsulacija.
+ * Koristi refleksiju za automatsko praćenje promjena.
  */
 public final class ChangeLogger {
 
@@ -25,9 +25,7 @@ public final class ChangeLogger {
     private ChangeLogger() {}
 
     /**
-     * Logira dodavanje novog entiteta.
-     * @param newEntity Novi entitet koji je dodan.
-     * @param <T> Tip entiteta.
+     * Bilježi dodavanje novog entiteta.
      */
     public static <T extends Entity> void logAddition(T newEntity) {
         if (newEntity == null) return;
@@ -35,9 +33,7 @@ public final class ChangeLogger {
     }
 
     /**
-     * Logira brisanje postojećeg entiteta.
-     * @param oldEntity Entitet koji je obrisan.
-     * @param <T> Tip entiteta.
+     * Bilježi brisanje postojećeg entiteta.
      */
     public static <T extends Entity> void logDeletion(T oldEntity) {
         if (oldEntity == null) return;
@@ -45,16 +41,12 @@ public final class ChangeLogger {
     }
 
     /**
-     * Uspoređuje dva entiteta i logira svaku promjenu polja pozivanjem njihovih javnih getter metoda.
-     * @param oldEntity Staro stanje entiteta.
-     * @param newEntity Novo stanje entiteta.
-     * @param <T> Tip entiteta.
+     * Uspoređuje dva entiteta i bilježi svaku promjenu polja.
      */
     public static <T extends Entity> void logUpdate(T oldEntity, T newEntity) {
         if (oldEntity == null || newEntity == null) return;
 
         for (Method method : oldEntity.getClass().getMethods()) {
-            // Zanima nas samo javna getter metoda bez parametara
             if (isGetter(method)) {
                 try {
                     Object oldValue = method.invoke(oldEntity);
@@ -79,8 +71,6 @@ public final class ChangeLogger {
 
     /**
      * Provjerava je li metoda javni getter.
-     * @param method Metoda za provjeru.
-     * @return True ako je metoda getter, inače false.
      */
     private static boolean isGetter(Method method) {
         if (!Modifier.isPublic(method.getModifiers()) ||
@@ -94,8 +84,6 @@ public final class ChangeLogger {
 
     /**
      * Pretvara naziv getter metode u naziv polja (npr. "getName" -> "name").
-     * @param getterName Naziv getter metode.
-     * @return Naziv polja.
      */
     private static String getFieldNameFromGetter(String getterName) {
         if (getterName.startsWith("get")) {

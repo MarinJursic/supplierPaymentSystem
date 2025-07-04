@@ -26,7 +26,7 @@ public class MenuController {
     /**
      * Odjavljuje trenutnog korisnika i prikazuje ekran za prijavu.
      */
-    private void logout() {
+    public void logout() {
         SessionManager.logout();
         Navigation.showScene("login.fxml", "Supplier Payment System - Login");
     }
@@ -34,21 +34,21 @@ public class MenuController {
     /**
      * Prikazuje ekran za pregled faktura.
      */
-    private void showInvoices() {
+    public void showInvoices() {
         Navigation.showScene("invoices.fxml", "Pregled Faktura");
     }
 
     /**
      * Prikazuje ekran za pregled dobavljača.
      */
-    private void showSuppliers() {
+    public void showSuppliers() {
         Navigation.showScene("suppliers.fxml", "Pregled Dobavljača");
     }
 
     /**
      * Prikazuje ekran za pregled zapisa o promjenama.
      */
-    private void showChangeLog() {
+    public void showChangeLog() {
         Navigation.showScene("changelog.fxml", "Pregled Promjena");
     }
 }

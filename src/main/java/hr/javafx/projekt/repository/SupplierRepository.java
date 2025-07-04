@@ -14,17 +14,17 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Implementacija repozitorija za rad s dobavljačima u bazi podataka.
+ * Upravlja operacijama nad dobavljačima u bazi podataka.
  */
 public class SupplierRepository extends AbstractRepository<Supplier> {
 
     private static final Logger log = LoggerFactory.getLogger(SupplierRepository.class);
 
     /**
-     * {@inheritDoc}
+     * Sprema novog dobavljača u bazu i bilježi promjenu.
      */
     @Override
-    public Supplier save(Supplier supplier) {
+    public Supplier save(Supplier supplier) throws RepositoryAccessException {
         String sql = "INSERT INTO SUPPLIER (name, address, oib) VALUES (?, ?, ?)";
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -42,17 +42,16 @@ public class SupplierRepository extends AbstractRepository<Supplier> {
         } catch (SQLException | IOException e) {
             String message = "Greška prilikom spremanja dobavljača!";
             log.error(message, e);
-            // Bacamo iznimku prema višem sloju (kontroleru)
             throw new RepositoryAccessException(message, e);
         }
         return supplier;
     }
 
     /**
-     * {@inheritDoc}
+     * Dohvaća sve dobavljače iz baze.
      */
     @Override
-    public List<Supplier> findAll() {
+    public List<Supplier> findAll() throws RepositoryAccessException {
         List<Supplier> suppliers = new ArrayList<>();
         String sql = "SELECT id, name, address, oib FROM SUPPLIER";
         try (Connection connection = DatabaseConnection.getConnection();
@@ -75,10 +74,10 @@ public class SupplierRepository extends AbstractRepository<Supplier> {
     }
 
     /**
-     * {@inheritDoc}
+     * Pronalazi dobavljača prema ID-u.
      */
     @Override
-    public Optional<Supplier> findById(Long id) {
+    public Optional<Supplier> findById(Long id) throws RepositoryAccessException {
         String sql = "SELECT id, name, address, oib FROM SUPPLIER WHERE id = ?";
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
@@ -102,13 +101,13 @@ public class SupplierRepository extends AbstractRepository<Supplier> {
     }
 
     /**
-     * {@inheritDoc}
+     * Ažurira postojećeg dobavljača u bazi i bilježi promjenu.
      */
     @Override
-    public void update(Supplier supplier) {
+    public void update(Supplier supplier) throws RepositoryAccessException {
         Optional<Supplier> oldSupplierOptional = findById(supplier.getId());
         if (oldSupplierOptional.isEmpty()) {
-            throw new RepositoryAccessException("Pokušaj ažuriranja dobavljača koji ne postoji.", null);
+            throw new RepositoryAccessException("Pokušaj ažuriranja dobavljača koji ne postoji.");
         }
         Supplier oldSupplier = oldSupplierOptional.get();
 
@@ -130,10 +129,8 @@ public class SupplierRepository extends AbstractRepository<Supplier> {
 
     /**
      * Provjerava je li dobavljač povezan s bilo kojom fakturom.
-     * @param supplierId ID dobavljača.
-     * @return True ako postoje povezane fakture, inače false.
      */
-    public boolean isSupplierLinkedToInvoices(Long supplierId) {
+    public boolean isSupplierLinkedToInvoices(Long supplierId) throws RepositoryAccessException {
         String sql = "SELECT COUNT(*) FROM INVOICE WHERE supplier_id = ?";
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
@@ -152,13 +149,13 @@ public class SupplierRepository extends AbstractRepository<Supplier> {
     }
 
     /**
-     * {@inheritDoc}
+     * Briše dobavljača iz baze i bilježi promjenu.
      */
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(Long id) throws RepositoryAccessException {
         Optional<Supplier> oldSupplierOptional = findById(id);
         if (oldSupplierOptional.isEmpty()) {
-            throw new RepositoryAccessException("Pokušaj brisanja dobavljača koji ne postoji.", null);
+            throw new RepositoryAccessException("Pokušaj brisanja dobavljača koji ne postoji.");
         }
         Supplier oldSupplier = oldSupplierOptional.get();
 

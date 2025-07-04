@@ -13,7 +13,7 @@ import java.util.Optional;
 /**
  * Pomoćna klasa za upravljanje navigacijom između scena u aplikaciji.
  */
-public class Navigation {
+public final class Navigation {
 
     private static final Logger log = LoggerFactory.getLogger(Navigation.class);
     private static Stage primaryStage;
@@ -21,25 +21,19 @@ public class Navigation {
     private Navigation() {}
 
     /**
-     * Pomoćni record za vraćanje Stage-a i kontrolera iz popup metode.
-     * @param stage Stage popup prozora.
-     * @param controller Kontroler popup prozora.
-     * @param <T> Tip kontrolera.
+     * Pomoćni zapis (record) za vraćanje Stage-a i kontrolera iz popup metode.
      */
     public record Popup<T>(Stage stage, T controller) {}
 
     /**
-     * Postavlja glavnu pozornicu (stage) aplikacije.
-     * @param stage Glavni Stage.
+     * Postavlja glavni prozor (Stage) aplikacije.
      */
     public static void setPrimaryStage(Stage stage) {
         primaryStage = stage;
     }
 
     /**
-     * Učitava i prikazuje novu scenu na glavnoj pozornici.
-     * @param fxmlFile Naziv FXML datoteke.
-     * @param title Naslov prozora.
+     * Učitava i prikazuje novu scenu na glavnom prozoru.
      */
     public static void showScene(String fxmlFile, String title) {
         try {
@@ -50,15 +44,13 @@ public class Navigation {
             primaryStage.show();
         } catch (IOException e) {
             log.error("Greška prilikom učitavanja scene: {}", fxmlFile, e);
+            DialogUtils.showError("Greška Navigacije", "Nije moguće učitati ekran: " + fxmlFile);
         }
     }
 
     /**
-     * Kreira, ali ne prikazuje, novi prozor (popup) kao modalni dijalog.
+     * Kreira novi prozor (popup) kao modalni dijalog.
      * Vraća Stage i kontroler kako bi se podaci mogli postaviti prije prikaza.
-     * @param fxmlFile Naziv FXML datoteke za popup.
-     * @param title Naslov popup prozora.
-     * @return Objekt koji sadrži Stage i kontroler popup prozora.
      */
     public static <T> Optional<Popup<T>> createPopup(String fxmlFile, String title) {
         try {
@@ -74,10 +66,14 @@ public class Navigation {
             return Optional.of(new Popup<>(dialogStage, fxmlLoader.getController()));
         } catch (IOException e) {
             log.error("Greška prilikom kreiranja popup prozora: {}", fxmlFile, e);
+            DialogUtils.showError("Greška Navigacije", "Nije moguće kreirati popup prozor: " + fxmlFile);
             return Optional.empty();
         }
     }
 
+    /**
+     * Pomoćna metoda za učitavanje FXML datoteke.
+     */
     private static FXMLLoader loadFXML(String fxmlFile) throws IOException {
         String resourcePath = "/hr/javafx/projekt/" + fxmlFile;
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource(resourcePath));

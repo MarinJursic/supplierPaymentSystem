@@ -41,6 +41,7 @@ public class RegistrationController {
     /**
      * Rukuje događajem registracije. Validira unos i, ako je ispravan, registrira novog korisnika.
      */
+    @FXML
     private void handleRegister() {
         if (!isInputValid()) {
             return;
@@ -86,13 +87,14 @@ public class RegistrationController {
             return false;
         }
 
-        errorLabel.setText(""); // Očisti poruku o grešci ako je sve u redu
+        errorLabel.setText("");
         return true;
     }
 
     /**
      * Preusmjerava korisnika na ekran za prijavu.
      */
+    @FXML
     private void showLoginScreen() {
         Navigation.showScene("login.fxml", "Supplier Payment System - Login");
     }

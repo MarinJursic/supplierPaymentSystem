@@ -3,19 +3,20 @@ package hr.javafx.projekt.controller;
 import hr.javafx.projekt.exception.RepositoryAccessException;
 import hr.javafx.projekt.model.Supplier;
 import hr.javafx.projekt.repository.SupplierRepository;
+import hr.javafx.projekt.utils.DialogUtils;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
-import java.util.Optional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Kontroler za prozor za dodavanje i izmjenu dobavljača.
  */
 public class SupplierEditController {
+
+    private static final Logger log = LoggerFactory.getLogger(SupplierEditController.class);
 
     @FXML private Label titleLabel;
     @FXML private TextField nameField;
@@ -44,53 +45,54 @@ public class SupplierEditController {
         oibField.setText(supplierToEdit.getOib());
     }
 
+    /**
+     * Rukuje spremanjem podataka. Validira unos, traži potvrdu za izmjene,
+     * i sprema novog ili ažurira postojećeg dobavljača.
+     */
     @FXML
     private void handleSave() {
         if (!isInputValid()) {
             return;
         }
 
-        // AŽURIRANJE - DODAJEMO POTVRDU
-        if (supplierToEdit != null) {
-            Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
-            confirmation.setTitle("Potvrda izmjene");
-            confirmation.setHeaderText("Jeste li sigurni da želite spremiti promjene za ovog dobavljača?");
-            Optional<ButtonType> result = confirmation.showAndWait();
-
-            // Nastavljamo samo ako je korisnik kliknuo "OK" (ili YES)
-            if (result.isPresent() && result.get() == ButtonType.OK) {
-                try {
+        try {
+            if (supplierToEdit != null) {
+                if (DialogUtils.showConfirmation("Potvrda izmjene", "Jeste li sigurni da želite spremiti promjene?")) {
                     supplierToEdit.setName(nameField.getText());
                     supplierToEdit.setAddress(addressField.getText());
                     supplierToEdit.setOib(oibField.getText());
                     supplierRepository.update(supplierToEdit);
-
-                    closeWindow(); // Uspjeh -> zatvori prozor za izmjenu
-                } catch (RepositoryAccessException e) {
-                    handleRepositoryError(e); // Greška -> prikaži poruku, prozor ostaje otvoren
+                    closeWindow();
                 }
-            }
-        } else {
-            // KREIRANJE NOVOG - ne treba potvrda
-            try {
+            } else {
                 Supplier newSupplier = new Supplier(null, nameField.getText(), addressField.getText(), oibField.getText());
                 supplierRepository.save(newSupplier);
                 closeWindow();
-            } catch (RepositoryAccessException e) {
-                handleRepositoryError(e);
             }
+        } catch (RepositoryAccessException e) {
+            handleRepositoryError(e);
         }
     }
 
+    /**
+     * Zatvara prozor bez spremanja promjena.
+     */
     @FXML
     private void handleCancel() {
         closeWindow();
     }
 
+    /**
+     * Zatvara trenutni prozor.
+     */
     private void closeWindow() {
         ((Stage) titleLabel.getScene().getWindow()).close();
     }
 
+    /**
+     * Provjerava jesu li svi uneseni podaci ispravni.
+     * @return True ako je unos ispravan, inače false.
+     */
     private boolean isInputValid() {
         StringBuilder errorMessage = new StringBuilder();
         if (nameField.getText() == null || nameField.getText().isBlank()) {
@@ -106,26 +108,23 @@ public class SupplierEditController {
         }
 
         if (!errorMessage.isEmpty()) {
-            showAlert(Alert.AlertType.ERROR, "Neispravan unos", errorMessage.toString());
+            DialogUtils.showError("Neispravan unos", errorMessage.toString());
             return false;
         }
         return true;
     }
 
-    private void showAlert(Alert.AlertType alertType, String title, String content) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(content);
-        alert.showAndWait();
-    }
-
+    /**
+     * Centralizirano rukuje greškama iz repozitorija i prikazuje odgovarajuću poruku.
+     * @param e Iznimka uhvaćena iz repozitorija.
+     */
     private void handleRepositoryError(RepositoryAccessException e) {
+        log.error("Greška pri spremanju dobavljača.", e);
         Throwable cause = e.getCause();
-        if (cause instanceof java.sql.SQLException && ((java.sql.SQLException) cause).getSQLState().equals("23505")) {
-            showAlert(Alert.AlertType.ERROR, "Greška pri spremanju", "Dobavljač s tim OIB-om već postoji!");
+        if (cause instanceof java.sql.SQLException sqlEx && "23505".equals(sqlEx.getSQLState())) {
+            DialogUtils.showError("Greška pri spremanju", "Dobavljač s tim OIB-om već postoji!");
         } else {
-            showAlert(Alert.AlertType.ERROR, "Greška pri spremanju", "Spremanje nije uspjelo. Provjerite log za detalje.");
+            DialogUtils.showError("Greška pri spremanju", "Spremanje nije uspjelo. Provjerite log za detalje.");
         }
     }
 }

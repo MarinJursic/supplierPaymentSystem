@@ -7,11 +7,11 @@ import hr.javafx.projekt.exception.InvalidLoginException;
 import hr.javafx.projekt.exception.RepositoryAccessException;
 import hr.javafx.projekt.exception.UsernameAlreadyExistsException;
 import hr.javafx.projekt.model.User;
-import hr.javafx.projekt.repository.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -21,7 +21,8 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Manages reading, authenticating, and registering users from both file and database.
+ * Upravlja čitanjem, autentifikacijom i registracijom korisnika.
+ * Koristi tekstualnu datoteku za provjeru lozinki i bazu podataka za pohranu korisnika.
  */
 public class UserRepository {
 
@@ -30,13 +31,9 @@ public class UserRepository {
     private static final Logger log = LoggerFactory.getLogger(UserRepository.class);
 
     /**
-     * Authenticates a user against the text file.
-     * @param username The username.
-     * @param password The raw password.
-     * @return An Optional containing a Pair of user ID and role if successful.
-     * @throws InvalidLoginException if authentication fails.
+     * Autentificira korisnika usporedbom s podacima iz tekstualne datoteke.
      */
-    public Optional<Pair<Long, UserRole>> authenticate(String username, String password) throws InvalidLoginException {
+    public Optional<Pair<Long, UserRole>> authenticate(String username, String password) throws InvalidLoginException, RepositoryAccessException {
         try {
             List<String> lines = Files.readAllLines(Path.of(USERS_FILE_PATH));
             lines.removeIf(String::isEmpty);
@@ -64,29 +61,25 @@ public class UserRepository {
     }
 
     /**
-     * Registers a new user in both the database and the text file.
-     * @param username The username.
-     * @param password The raw password.
-     * @param role The user's role.
-     * @throws UsernameAlreadyExistsException If the username already exists.
+     * Registrira novog korisnika u bazu podataka i tekstualnu datoteku.
      */
-    public synchronized void registerUser(String username, String password, UserRole role) throws UsernameAlreadyExistsException {
-        // 1. Check if user exists in the database
+    public synchronized void registerUser(String username, String password, UserRole role) throws UsernameAlreadyExistsException, RepositoryAccessException {
         if (findUserIdByUsername(username).isPresent()) {
             throw new UsernameAlreadyExistsException("Korisničko ime '" + username + "' je već zauzeto.");
         }
 
-        // 2. Save user to the database
         String hashedPassword = BCrypt.withDefaults().hashToString(12, password.toCharArray());
         User newUser = new User(null, username, hashedPassword, role);
         long newId = saveUserToDatabase(newUser);
         newUser.setId(newId);
 
-        // 3. Append user to the text file
         appendUserToFile(newUser);
     }
 
-    private long saveUserToDatabase(User user) {
+    /**
+     * Sprema novog korisnika u bazu podataka.
+     */
+    private long saveUserToDatabase(User user) throws RepositoryAccessException {
         String sql = "INSERT INTO USERS (username, password_hash, role) VALUES (?, ?, ?)";
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -103,12 +96,26 @@ public class UserRepository {
                 }
             }
         } catch (SQLException | IOException e) {
+            log.error("Greška pri spremanju korisnika u bazu.", e);
             throw new RepositoryAccessException("Greška pri spremanju korisnika u bazu.", e);
         }
     }
 
-    private void appendUserToFile(User user) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(USERS_FILE_PATH, true))) {
+    /**
+     * Dodaje novog korisnika na kraj tekstualne datoteke.
+     */
+    private void appendUserToFile(User user) throws RepositoryAccessException {
+        File file = new File(USERS_FILE_PATH);
+        File parentDir = file.getParentFile();
+        if (parentDir != null && !parentDir.exists()) {
+            if (!parentDir.mkdirs()) {
+                String message = "Nije moguće kreirati direktorij: " + parentDir.getAbsolutePath();
+                log.error(message);
+                throw new RepositoryAccessException(message);
+            }
+        }
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
             writer.newLine();
             writer.write(String.valueOf(user.getId()));
             writer.newLine();
@@ -118,11 +125,15 @@ public class UserRepository {
             writer.newLine();
             writer.write(user.getRole().name());
         } catch (IOException e) {
+            log.error("Greška pri pisanju u korisničku datoteku!", e);
             throw new RepositoryAccessException("Greška pri pisanju u korisničku datoteku!", e);
         }
     }
 
-    private Optional<Long> findUserIdByUsername(String username) {
+    /**
+     * Pronalazi ID korisnika u bazi podataka prema korisničkom imenu.
+     */
+    private Optional<Long> findUserIdByUsername(String username) throws RepositoryAccessException {
         String sql = "SELECT id FROM USERS WHERE username = ?";
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
@@ -133,7 +144,9 @@ public class UserRepository {
                 }
             }
         } catch (SQLException | IOException e) {
-            log.error("Greška pri pronalasku korisnika u bazi.", e);
+            String message = "Greška pri pronalasku korisnika u bazi.";
+            log.error(message, e);
+            throw new RepositoryAccessException(message, e);
         }
         return Optional.empty();
     }

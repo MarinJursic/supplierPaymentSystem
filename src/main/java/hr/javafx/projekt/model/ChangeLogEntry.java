@@ -5,8 +5,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Predstavlja nepromjenjivi zapis o promjeni u sustavu.
- * Koristi se za serijalizaciju i praćenje promjena.
+ * Predstavlja nepromjenjivi zapis (record) o promjeni u sustavu.
+ * Koristi se za serijalizaciju i praćenje promjena entiteta.
  *
  * @param changeType Tip promjene (npr. "ADD", "UPDATE", "DELETE").
  * @param entityName Naziv entiteta koji se mijenja.
@@ -28,6 +28,10 @@ public record ChangeLogEntry(
 
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy. HH:mm:ss");
 
+    /**
+     * Vraća formatiranu string reprezentaciju zapisa o promjeni.
+     * @return String s detaljima promjene.
+     */
     @Override
     public String toString() {
         return String.format("[%s] %s: %s -> %s (Polje: %s, Entitet: %s, Korisnik: %s)",

@@ -4,6 +4,7 @@ import hr.javafx.projekt.exception.RepositoryAccessException;
 import hr.javafx.projekt.model.Supplier;
 import hr.javafx.projekt.repository.SupplierRepository;
 import hr.javafx.projekt.session.SessionManager;
+import hr.javafx.projekt.utils.DialogUtils;
 import hr.javafx.projekt.utils.Navigation;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -14,11 +15,14 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Kontroler za ekran za prikaz i upravljanje dobavljačima.
  */
 public class SupplierController {
+
+    private static final Logger log = LoggerFactory.getLogger(SupplierController.class);
 
     @FXML private TextField nameFilterField;
     @FXML private TableView<Supplier> supplierTableView;
@@ -30,10 +34,10 @@ public class SupplierController {
 
     private final SupplierRepository supplierRepository = new SupplierRepository();
     private List<Supplier> allSuppliers;
-    private static final Logger log = LoggerFactory.getLogger(SupplierController.class);
 
     /**
-     * Inicijalizira kontroler, postavlja stupce tablice i učitava podatke.
+     * Inicijalizira kontroler, postavlja stupce tablice, vidljivost gumba
+     * ovisno o roli korisnika i učitava podatke o dobavljačima.
      */
     public void initialize() {
         if (menuController != null) menuController.initialize();
@@ -46,9 +50,18 @@ public class SupplierController {
         loadAllSuppliers();
     }
 
+    /**
+     * Učitava sve dobavljače iz repozitorija i prikazuje ih u tablici.
+     * U slučaju greške, prikazuje poruku korisniku.
+     */
     private void loadAllSuppliers() {
-        allSuppliers = supplierRepository.findAll();
-        supplierTableView.setItems(FXCollections.observableArrayList(allSuppliers));
+        try {
+            allSuppliers = supplierRepository.findAll();
+            supplierTableView.setItems(FXCollections.observableArrayList(allSuppliers));
+        } catch (RepositoryAccessException e) {
+            log.error("Greška prilikom dohvaćanja dobavljača.", e);
+            DialogUtils.showError("Greška", "Nije moguće dohvatiti podatke o dobavljačima.");
+        }
     }
 
     /**
@@ -59,7 +72,7 @@ public class SupplierController {
         String nameFilter = nameFilterField.getText().toLowerCase();
         List<Supplier> filteredList = allSuppliers.stream()
                 .filter(supplier -> supplier.getName().toLowerCase().contains(nameFilter))
-                .toList();
+                .collect(Collectors.toList());
         supplierTableView.setItems(FXCollections.observableArrayList(filteredList));
     }
 
@@ -73,6 +86,7 @@ public class SupplierController {
 
     /**
      * Otvara prozor za izmjenu odabranog dobavljača.
+     * Ako nijedan dobavljač nije odabran, prikazuje upozorenje.
      */
     @FXML
     private void handleEditSupplier() {
@@ -80,64 +94,55 @@ public class SupplierController {
         if (selected != null) {
             showEditDialog(selected);
         } else {
-            showAlert(Alert.AlertType.WARNING, "Nije odabran dobavljač", "Molimo odaberite dobavljača za izmjenu.");
+            DialogUtils.showWarning("Nije odabran dobavljač", "Molimo odaberite dobavljača za izmjenu.");
         }
     }
 
     /**
      * Briše odabranog dobavljača nakon provjere i potvrde.
+     * Provjerava je li dobavljač povezan s fakturama prije brisanja.
      */
     @FXML
     private void handleDeleteSupplier() {
         Supplier selected = supplierTableView.getSelectionModel().getSelectedItem();
         if (selected == null) {
-            showAlert(Alert.AlertType.WARNING, "Nije odabran dobavljač", "Molimo odaberite dobavljača za brisanje.");
+            DialogUtils.showWarning("Nije odabran dobavljač", "Molimo odaberite dobavljača za brisanje.");
             return;
         }
 
-        if (supplierRepository.isSupplierLinkedToInvoices(selected.getId())) {
-            showAlert(Alert.AlertType.ERROR, "Brisanje nije moguće", "Dobavljač se ne može obrisati jer postoje fakture povezane s njim.");
-            return;
-        }
+        try {
+            if (supplierRepository.isSupplierLinkedToInvoices(selected.getId())) {
+                DialogUtils.showError("Brisanje nije moguće", "Dobavljač se ne može obrisati jer postoje fakture povezane s njim.");
+                return;
+            }
 
-        Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION, "Jeste li sigurni da želite obrisati ovog dobavljača?", ButtonType.YES, ButtonType.NO);
-        Optional<ButtonType> result = confirmation.showAndWait();
-
-        if (result.isPresent() && result.get() == ButtonType.YES) {
-            try {
+            if (DialogUtils.showConfirmation("Potvrda brisanja", "Jeste li sigurni da želite obrisati ovog dobavljača?")) {
                 supplierRepository.deleteById(selected.getId());
                 loadAllSuppliers();
-                showAlert(Alert.AlertType.INFORMATION, "Uspjeh", "Dobavljač je uspješno obrisan.");
-            } catch (RepositoryAccessException e) {
-                log.error("Neuspjelo brisanje dobavljača.", e);
-                showAlert(Alert.AlertType.ERROR, "Greška", "Došlo je do greške prilikom brisanja dobavljača.");
+                DialogUtils.showInformation("Uspjeh", "Dobavljač je uspješno obrisan.");
             }
+        } catch (RepositoryAccessException e) {
+            log.error("Neuspjelo brisanje dobavljača.", e);
+            DialogUtils.showError("Greška", "Došlo je do greške prilikom brisanja dobavljača.");
         }
     }
 
+    /**
+     * Prikazuje modalni prozor za dodavanje ili izmjenu dobavljača.
+     * Nakon zatvaranja prozora, ponovno učitava sve dobavljače.
+     * @param supplier Dobavljač za izmjenu, ili null ako se dodaje novi.
+     */
     private void showEditDialog(Supplier supplier) {
         String title = (supplier == null) ? "Dodaj Novog Dobavljača" : "Izmijeni Dobavljača";
-
         Optional<Navigation.Popup<SupplierEditController>> popupOptional = Navigation.createPopup("supplier_edit.fxml", title);
 
         if (popupOptional.isPresent()) {
             Navigation.Popup<SupplierEditController> popup = popupOptional.get();
-
             if (supplier != null) {
                 popup.controller().setSupplierToEdit(supplier);
             }
-
             popup.stage().showAndWait();
-
             loadAllSuppliers();
         }
-    }
-
-    private void showAlert(Alert.AlertType alertType, String title, String content) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(content);
-        alert.showAndWait();
     }
 }

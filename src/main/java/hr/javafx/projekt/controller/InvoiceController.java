@@ -10,6 +10,7 @@ import hr.javafx.projekt.utils.Navigation;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -20,12 +21,13 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * Kontroler za ekran za prikaz i upravljanje fakturama.
  */
 public class InvoiceController {
+
+    private static InvoiceController activeInstance;
 
     private static final Logger log = LoggerFactory.getLogger(InvoiceController.class);
 
@@ -43,25 +45,25 @@ public class InvoiceController {
     @FXML private MenuController menuController;
 
     private final InvoiceRepository invoiceRepository = new InvoiceRepository();
-    private Timeline refreshTimeline;
 
     /**
      * Inicijalizira kontroler, postavlja stupce tablice i pokreće periodično osvježavanje.
      */
     public void initialize() {
+        activeInstance = this;
         if (menuController != null) menuController.initialize();
         if (!SessionManager.isAdmin()) deleteInvoiceButton.setVisible(false);
 
         setupTableColumns();
         setupRowColoring();
         loadAndDisplayInvoices();
-        setupAutoRefresh();
+
     }
 
     /**
      * Konfigurira stupce tablice za prikaz podataka o fakturama.
      */
-    private void setupTableColumns() {
+    public void setupTableColumns() {
         invoiceNumberColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getInvoiceNumber()));
         supplierColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getSupplier().getName()));
         amountColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getAmount().toString()));
@@ -78,7 +80,7 @@ public class InvoiceController {
     /**
      * Postavlja bojanje redaka u tablici ovisno o statusu fakture.
      */
-    private void setupRowColoring() {
+    public void setupRowColoring() {
         invoiceTableView.setRowFactory(tv -> new TableRow<>() {
             @Override
             protected void updateItem(Invoice item, boolean empty) {
@@ -90,35 +92,32 @@ public class InvoiceController {
         });
     }
 
-    /**
-     * Postavlja i pokreće Timeline za automatsko osvježavanje podataka.
-     */
-    private void setupAutoRefresh() {
-        refreshTimeline = new Timeline(new KeyFrame(Duration.seconds(10), e -> loadAndDisplayInvoices()));
-        refreshTimeline.setCycleCount(Animation.INDEFINITE);
-        refreshTimeline.play();
+    private void loadAndDisplayInvoices() {
+        List<Invoice> invoices = invoiceRepository.findAll();
+        Platform.runLater(() -> {
+            String invoiceNumberFilter = invoiceNumberFilterField.getText();
+            String supplierFilter = supplierFilterField.getText();
+            if (!invoiceNumberFilter.isBlank() || !supplierFilter.isBlank()) {
+                handleFilter();
+            } else {
+                invoiceTableView.setItems(FXCollections.observableArrayList(invoices));
+            }
+        });
     }
 
     /**
-     * Učitava i prikazuje fakture, primjenjujući filtere ako su aktivni.
+     * Statička metoda koju poziva pozadinski servis za osvježavanje prikaza.
      */
-    private void loadAndDisplayInvoices() {
-        if (isFilterActive()) {
-            handleFilter();
-        } else {
-            try {
-                invoiceTableView.setItems(FXCollections.observableArrayList(invoiceRepository.findAll()));
-            } catch (RepositoryAccessException e) {
-                handleRepositoryError("Nije moguće dohvatiti podatke o fakturama.", e);
-            }
+    public static void refreshActiveInstance() {
+        if (activeInstance != null) {
+            activeInstance.loadAndDisplayInvoices();
         }
     }
 
     /**
      * Filtrira fakture na temelju unesenih kriterija.
      */
-    private void handleFilter() {
-        if (refreshTimeline != null) refreshTimeline.stop();
+    public void handleFilter() {
         try {
             List<Invoice> allInvoices = invoiceRepository.findAll();
             String invoiceFilter = invoiceNumberFilterField.getText().toLowerCase();
@@ -136,14 +135,14 @@ public class InvoiceController {
     /**
      * Otvara prozor za unos nove fakture.
      */
-    private void handleNewInvoice() {
+    public void handleNewInvoice() {
         showEditDialog(null);
     }
 
     /**
      * Otvara prozor za izmjenu odabrane fakture.
      */
-    private void handleEditInvoice() {
+    public void handleEditInvoice() {
         Invoice selected = invoiceTableView.getSelectionModel().getSelectedItem();
         if (selected != null) showEditDialog(selected);
         else DialogUtils.showWarning("Nije odabrana faktura", "Molimo odaberite fakturu za izmjenu.");
@@ -152,7 +151,7 @@ public class InvoiceController {
     /**
      * Briše odabranu fakturu nakon potvrde.
      */
-    private void handleDeleteInvoice() {
+    public void handleDeleteInvoice() {
         Invoice selected = invoiceTableView.getSelectionModel().getSelectedItem();
         if (selected == null) {
             DialogUtils.showWarning("Nije odabrana faktura", "Molimo odaberite fakturu za brisanje.");
@@ -182,9 +181,20 @@ public class InvoiceController {
         });
     }
 
+    /**
+     * Provjerava aktivnost filtera
+     * @return Da li je filter aktivan
+     */
+
     private boolean isFilterActive() {
         return !invoiceNumberFilterField.getText().isBlank() || !supplierFilterField.getText().isBlank();
     }
+
+    /**
+     * Handler za repository error
+     * @param message
+     * @param e
+     */
 
     private void handleRepositoryError(String message, RepositoryAccessException e) {
         log.error(message, e);
