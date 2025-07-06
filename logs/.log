@@ -18623,3 +18623,1195 @@ hr.javafx.projekt.exception.ValidationException: Datum dospijeća ne može biti 
 2025-07-06 22:27:10,845 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
 2025-07-06 22:27:10,868 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
 2025-07-06 22:27:14,713 INFO [JavaFX Application Thread] h.j.p.m.MainApplication [MainApplication.java:56] Aplikacija se zatvara. Gasim pozadinske servise.
+2025-07-06 23:23:02,689 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:23:02,775 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:23:12,682 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:23:12,710 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:23:12,916 WARN [JavaFX Application Thread] h.j.p.c.LoginController [LoginController.java:61] Neuspješan pokušaj prijave za korisnika: Novi
+hr.javafx.projekt.exception.InvalidLoginException: Netočna lozinka.
+	at hr.javafx.projekt/hr.javafx.projekt.repository.UserRepository.authenticate(UserRepository.java:57)
+	at hr.javafx.projekt/hr.javafx.projekt.controller.LoginController.handleLogin(LoginController.java:49)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at javafx.base@23.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+	at javafx.fxml@23.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+	at javafx.fxml@23.0.1/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1860)
+	at javafx.fxml@23.0.1/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1731)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@23.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@23.0.1/javafx.scene.Node.fireEvent(Node.java:8963)
+	at javafx.controls@23.0.1/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls@23.0.1/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+	at javafx.controls@23.0.1/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@23.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@23.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:3987)
+	at javafx.graphics@23.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1893)
+	at javafx.graphics@23.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2711)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:430)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:560)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.View.notifyMouse(View.java:946)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.mac.MacView.notifyMouse(MacView.java:128)
+2025-07-06 23:23:22,687 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:23:22,725 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:23:32,685 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:23:32,700 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:23:42,687 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:23:42,707 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:82] Faktura 154 je dospjela. Mijenjam status u 'OVERDUE'.
+2025-07-06 23:23:42,733 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:55] Ažurirano 1 dospjelih faktura.
+2025-07-06 23:23:42,733 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:23:52,682 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:23:52,698 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:24:02,684 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:24:02,713 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:82] Faktura 154 je dospjela. Mijenjam status u 'OVERDUE'.
+2025-07-06 23:24:02,738 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:55] Ažurirano 1 dospjelih faktura.
+2025-07-06 23:24:02,738 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:24:12,683 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:24:12,710 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:24:22,686 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:24:22,708 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:82] Faktura 245 je dospjela. Mijenjam status u 'OVERDUE'.
+2025-07-06 23:24:22,738 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:55] Ažurirano 1 dospjelih faktura.
+2025-07-06 23:24:22,738 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:24:32,685 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:24:32,714 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:24:42,687 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:24:42,712 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:24:52,685 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:24:52,707 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:25:02,682 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:25:02,699 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:25:05,732 WARN [JavaFX Application Thread] h.j.p.c.InvoiceEditController [InvoiceEditController.java:116] Neispravan unos prilikom spremanja fakture.
+hr.javafx.projekt.exception.ValidationException: Iznos mora biti ispravan broj (npr. 123.45).
+
+	at hr.javafx.projekt/hr.javafx.projekt.controller.InvoiceEditController.validateInput(InvoiceEditController.java:169)
+	at hr.javafx.projekt/hr.javafx.projekt.controller.InvoiceEditController.handleSave(InvoiceEditController.java:93)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at javafx.base@23.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+	at javafx.fxml@23.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+	at javafx.fxml@23.0.1/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1860)
+	at javafx.fxml@23.0.1/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1731)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@23.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@23.0.1/javafx.scene.Node.fireEvent(Node.java:8963)
+	at javafx.controls@23.0.1/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls@23.0.1/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+	at javafx.controls@23.0.1/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@23.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@23.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:3987)
+	at javafx.graphics@23.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1893)
+	at javafx.graphics@23.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2711)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:430)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:560)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.View.notifyMouse(View.java:946)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.mac.MacView.notifyMouse(MacView.java:128)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.mac.MacApplication._enterNestedEventLoopImpl(Native Method)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.mac.MacApplication._enterNestedEventLoop(MacApplication.java:173)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.Application.enterNestedEventLoop(Application.java:513)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.EventLoop.enter(EventLoop.java:107)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.enterNestedEventLoop(QuantumToolkit.java:656)
+	at javafx.graphics@23.0.1/javafx.stage.Stage.showAndWait(Stage.java:469)
+	at hr.javafx.projekt/hr.javafx.projekt.controller.InvoiceController.lambda$showEditDialog$12(InvoiceController.java:178)
+	at java.base/java.util.Optional.ifPresent(Optional.java:178)
+	at hr.javafx.projekt/hr.javafx.projekt.controller.InvoiceController.showEditDialog(InvoiceController.java:176)
+	at hr.javafx.projekt/hr.javafx.projekt.controller.InvoiceController.handleNewInvoice(InvoiceController.java:138)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at javafx.base@23.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+	at javafx.fxml@23.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+	at javafx.fxml@23.0.1/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1860)
+	at javafx.fxml@23.0.1/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1731)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@23.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@23.0.1/javafx.scene.Node.fireEvent(Node.java:8963)
+	at javafx.controls@23.0.1/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls@23.0.1/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+	at javafx.controls@23.0.1/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@23.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@23.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:3987)
+	at javafx.graphics@23.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1893)
+	at javafx.graphics@23.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2711)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:430)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:560)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.View.notifyMouse(View.java:946)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.mac.MacView.notifyMouse(MacView.java:128)
+2025-07-06 23:25:05,733 ERROR [JavaFX Application Thread] h.j.p.u.DialogUtils [DialogUtils.java:24] Prikazana greška korisniku: Naslov='Neispravan unos', Sadržaj='Iznos mora biti ispravan broj (npr. 123.45).
+'
+2025-07-06 23:25:11,979 WARN [JavaFX Application Thread] h.j.p.c.InvoiceEditController [InvoiceEditController.java:116] Neispravan unos prilikom spremanja fakture.
+hr.javafx.projekt.exception.ValidationException: Datum dospijeća ne može biti prije datuma izdavanja.
+
+	at hr.javafx.projekt/hr.javafx.projekt.controller.InvoiceEditController.validateInput(InvoiceEditController.java:169)
+	at hr.javafx.projekt/hr.javafx.projekt.controller.InvoiceEditController.handleSave(InvoiceEditController.java:93)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at javafx.base@23.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+	at javafx.fxml@23.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+	at javafx.fxml@23.0.1/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1860)
+	at javafx.fxml@23.0.1/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1731)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@23.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@23.0.1/javafx.scene.Node.fireEvent(Node.java:8963)
+	at javafx.controls@23.0.1/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls@23.0.1/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+	at javafx.controls@23.0.1/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@23.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@23.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:3987)
+	at javafx.graphics@23.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1893)
+	at javafx.graphics@23.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2711)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:430)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:560)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.View.notifyMouse(View.java:946)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.mac.MacView.notifyMouse(MacView.java:128)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.mac.MacApplication._enterNestedEventLoopImpl(Native Method)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.mac.MacApplication._enterNestedEventLoop(MacApplication.java:173)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.Application.enterNestedEventLoop(Application.java:513)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.EventLoop.enter(EventLoop.java:107)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.enterNestedEventLoop(QuantumToolkit.java:656)
+	at javafx.graphics@23.0.1/javafx.stage.Stage.showAndWait(Stage.java:469)
+	at hr.javafx.projekt/hr.javafx.projekt.controller.InvoiceController.lambda$showEditDialog$12(InvoiceController.java:178)
+	at java.base/java.util.Optional.ifPresent(Optional.java:178)
+	at hr.javafx.projekt/hr.javafx.projekt.controller.InvoiceController.showEditDialog(InvoiceController.java:176)
+	at hr.javafx.projekt/hr.javafx.projekt.controller.InvoiceController.handleNewInvoice(InvoiceController.java:138)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at javafx.base@23.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+	at javafx.fxml@23.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+	at javafx.fxml@23.0.1/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1860)
+	at javafx.fxml@23.0.1/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1731)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@23.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@23.0.1/javafx.scene.Node.fireEvent(Node.java:8963)
+	at javafx.controls@23.0.1/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls@23.0.1/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+	at javafx.controls@23.0.1/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@23.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@23.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:3987)
+	at javafx.graphics@23.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1893)
+	at javafx.graphics@23.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2711)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:430)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:560)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.View.notifyMouse(View.java:946)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.mac.MacView.notifyMouse(MacView.java:128)
+2025-07-06 23:25:11,982 ERROR [JavaFX Application Thread] h.j.p.u.DialogUtils [DialogUtils.java:24] Prikazana greška korisniku: Naslov='Neispravan unos', Sadržaj='Datum dospijeća ne može biti prije datuma izdavanja.
+'
+2025-07-06 23:25:12,684 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:25:12,702 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:25:19,361 WARN [JavaFX Application Thread] h.j.p.c.InvoiceEditController [InvoiceEditController.java:116] Neispravan unos prilikom spremanja fakture.
+hr.javafx.projekt.exception.ValidationException: Datum dospijeća ne može biti prije datuma izdavanja.
+
+	at hr.javafx.projekt/hr.javafx.projekt.controller.InvoiceEditController.validateInput(InvoiceEditController.java:169)
+	at hr.javafx.projekt/hr.javafx.projekt.controller.InvoiceEditController.handleSave(InvoiceEditController.java:93)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at javafx.base@23.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+	at javafx.fxml@23.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+	at javafx.fxml@23.0.1/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1860)
+	at javafx.fxml@23.0.1/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1731)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@23.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@23.0.1/javafx.scene.Node.fireEvent(Node.java:8963)
+	at javafx.controls@23.0.1/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls@23.0.1/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+	at javafx.controls@23.0.1/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@23.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@23.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:3987)
+	at javafx.graphics@23.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1893)
+	at javafx.graphics@23.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2711)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:430)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:560)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.View.notifyMouse(View.java:946)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.mac.MacView.notifyMouse(MacView.java:128)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.mac.MacApplication._enterNestedEventLoopImpl(Native Method)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.mac.MacApplication._enterNestedEventLoop(MacApplication.java:173)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.Application.enterNestedEventLoop(Application.java:513)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.EventLoop.enter(EventLoop.java:107)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.enterNestedEventLoop(QuantumToolkit.java:656)
+	at javafx.graphics@23.0.1/javafx.stage.Stage.showAndWait(Stage.java:469)
+	at hr.javafx.projekt/hr.javafx.projekt.controller.InvoiceController.lambda$showEditDialog$12(InvoiceController.java:178)
+	at java.base/java.util.Optional.ifPresent(Optional.java:178)
+	at hr.javafx.projekt/hr.javafx.projekt.controller.InvoiceController.showEditDialog(InvoiceController.java:176)
+	at hr.javafx.projekt/hr.javafx.projekt.controller.InvoiceController.handleNewInvoice(InvoiceController.java:138)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at javafx.base@23.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+	at javafx.fxml@23.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+	at javafx.fxml@23.0.1/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1860)
+	at javafx.fxml@23.0.1/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1731)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@23.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@23.0.1/javafx.scene.Node.fireEvent(Node.java:8963)
+	at javafx.controls@23.0.1/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls@23.0.1/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+	at javafx.controls@23.0.1/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@23.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@23.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:3987)
+	at javafx.graphics@23.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1893)
+	at javafx.graphics@23.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2711)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:430)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:560)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.View.notifyMouse(View.java:946)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.mac.MacView.notifyMouse(MacView.java:128)
+2025-07-06 23:25:19,365 ERROR [JavaFX Application Thread] h.j.p.u.DialogUtils [DialogUtils.java:24] Prikazana greška korisniku: Naslov='Neispravan unos', Sadržaj='Datum dospijeća ne može biti prije datuma izdavanja.
+'
+2025-07-06 23:25:22,688 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:25:22,708 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:25:32,685 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:25:32,703 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:82] Faktura 34sdgg je dospjela. Mijenjam status u 'OVERDUE'.
+2025-07-06 23:25:32,735 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:55] Ažurirano 1 dospjelih faktura.
+2025-07-06 23:25:32,735 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:25:42,668 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:25:42,688 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:25:52,657 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:25:52,677 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:82] Faktura 34sdgg je dospjela. Mijenjam status u 'OVERDUE'.
+2025-07-06 23:25:52,706 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:55] Ažurirano 1 dospjelih faktura.
+2025-07-06 23:25:52,706 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:26:02,652 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:26:02,668 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:26:12,652 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:26:12,665 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:26:22,651 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:26:22,669 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:26:32,647 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:26:32,664 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:26:42,648 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:26:42,673 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:26:52,646 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:26:52,662 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:26:53,371 INFO [JavaFX Application Thread] h.j.p.m.MainApplication [MainApplication.java:56] Aplikacija se zatvara. Gasim pozadinske servise.
+2025-07-06 23:26:59,434 INFO [JavaFX Application Thread] h.j.p.m.MainApplication [MainApplication.java:56] Aplikacija se zatvara. Gasim pozadinske servise.
+2025-07-06 23:36:49,070 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:36:49,145 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:36:59,071 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:36:59,096 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:37:00,287 WARN [JavaFX Application Thread] h.j.p.c.RegistrationController [RegistrationController.java:60] Neuspješna validacija prilikom registracije.
+hr.javafx.projekt.exception.ValidationException: Lozinka mora imati barem 8 znakova.
+	at hr.javafx.projekt/hr.javafx.projekt.controller.RegistrationController.validateInput(RegistrationController.java:84)
+	at hr.javafx.projekt/hr.javafx.projekt.controller.RegistrationController.handleRegister(RegistrationController.java:48)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at javafx.base@23.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+	at javafx.fxml@23.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+	at javafx.fxml@23.0.1/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1860)
+	at javafx.fxml@23.0.1/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1731)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@23.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@23.0.1/javafx.scene.Node.fireEvent(Node.java:8963)
+	at javafx.controls@23.0.1/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls@23.0.1/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+	at javafx.controls@23.0.1/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@23.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@23.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:3987)
+	at javafx.graphics@23.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1893)
+	at javafx.graphics@23.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2711)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:430)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:560)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.View.notifyMouse(View.java:946)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.mac.MacView.notifyMouse(MacView.java:128)
+2025-07-06 23:37:09,067 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:37:09,094 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:37:09,926 WARN [JavaFX Application Thread] h.j.p.c.LoginController [LoginController.java:61] Neuspješan pokušaj prijave za korisnika: Admin2
+hr.javafx.projekt.exception.InvalidLoginException: Netočna lozinka.
+	at hr.javafx.projekt/hr.javafx.projekt.repository.UserRepository.authenticate(UserRepository.java:57)
+	at hr.javafx.projekt/hr.javafx.projekt.controller.LoginController.handleLogin(LoginController.java:49)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at javafx.base@23.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+	at javafx.fxml@23.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+	at javafx.fxml@23.0.1/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1860)
+	at javafx.fxml@23.0.1/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1731)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@23.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@23.0.1/javafx.scene.Node.fireEvent(Node.java:8963)
+	at javafx.controls@23.0.1/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls@23.0.1/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+	at javafx.controls@23.0.1/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@23.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@23.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:3987)
+	at javafx.graphics@23.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1893)
+	at javafx.graphics@23.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2711)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:430)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:560)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.View.notifyMouse(View.java:946)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.mac.MacView.notifyMouse(MacView.java:128)
+2025-07-06 23:37:13,981 INFO [JavaFX Application Thread] h.j.p.m.MainApplication [MainApplication.java:56] Aplikacija se zatvara. Gasim pozadinske servise.
+2025-07-06 23:42:09,724 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:42:09,812 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:42:10,662 ERROR [JavaFX Application Thread] h.j.p.u.Navigation [Navigation.java:46] Greška prilikom učitavanja scene: dashboard.fxml
+javafx.fxml.LoadException: 
+/Users/marinjursic/IdeaProjects/projekt/target/classes/hr/javafx/projekt/menu.fxml:27
+/Users/marinjursic/IdeaProjects/projekt/target/classes/hr/javafx/projekt/dashboard.fxml:12
+
+	at javafx.fxml@23.0.1/javafx.fxml.FXMLLoader.constructLoadException(FXMLLoader.java:2727)
+	at javafx.fxml@23.0.1/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2705)
+	at javafx.fxml@23.0.1/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2568)
+	at javafx.fxml@23.0.1/javafx.fxml.FXMLLoader$IncludeElement.constructValue(FXMLLoader.java:1160)
+	at javafx.fxml@23.0.1/javafx.fxml.FXMLLoader$ValueElement.processStartElement(FXMLLoader.java:759)
+	at javafx.fxml@23.0.1/javafx.fxml.FXMLLoader.processStartElement(FXMLLoader.java:2858)
+	at javafx.fxml@23.0.1/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2654)
+	at javafx.fxml@23.0.1/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2568)
+	at javafx.fxml@23.0.1/javafx.fxml.FXMLLoader.load(FXMLLoader.java:2536)
+	at hr.javafx.projekt/hr.javafx.projekt.utils.Navigation.showScene(Navigation.java:41)
+	at hr.javafx.projekt/hr.javafx.projekt.controller.LoginController.handleLogin(LoginController.java:54)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at javafx.base@23.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+	at javafx.fxml@23.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+	at javafx.fxml@23.0.1/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1860)
+	at javafx.fxml@23.0.1/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1731)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@23.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@23.0.1/javafx.scene.Node.fireEvent(Node.java:8963)
+	at javafx.controls@23.0.1/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls@23.0.1/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+	at javafx.controls@23.0.1/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@23.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@23.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:3987)
+	at javafx.graphics@23.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1893)
+	at javafx.graphics@23.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2711)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:430)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:560)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.View.notifyMouse(View.java:946)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.mac.MacView.notifyMouse(MacView.java:128)
+Caused by: java.lang.IllegalArgumentException: Unable to coerce HBox@1b2e4764 to class javafx.scene.control.Menu.
+	at javafx.fxml@23.0.1/com.sun.javafx.fxml.BeanAdapter.coerce(BeanAdapter.java:497)
+	at javafx.fxml@23.0.1/javafx.fxml.FXMLLoader$Element.add(FXMLLoader.java:174)
+	at javafx.fxml@23.0.1/javafx.fxml.FXMLLoader$ValueElement.processEndElement(FXMLLoader.java:801)
+	at javafx.fxml@23.0.1/javafx.fxml.FXMLLoader.processEndElement(FXMLLoader.java:2974)
+	at javafx.fxml@23.0.1/javafx.fxml.FXMLLoader.loadImpl(FXMLLoader.java:2659)
+	... 61 common frames omitted
+2025-07-06 23:42:10,664 ERROR [JavaFX Application Thread] h.j.p.u.DialogUtils [DialogUtils.java:24] Prikazana greška korisniku: Naslov='Greška Navigacije', Sadržaj='Nije moguće učitati ekran: dashboard.fxml'
+2025-07-06 23:42:12,413 INFO [JavaFX Application Thread] h.j.p.m.MainApplication [MainApplication.java:56] Aplikacija se zatvara. Gasim pozadinske servise.
+2025-07-06 23:44:34,121 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:44:34,209 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:44:44,120 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:44:44,134 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:44:54,124 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:44:54,146 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:45:04,122 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:45:04,149 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:45:14,123 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:45:14,145 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:45:41,665 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:45:41,688 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:45:51,661 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:45:51,702 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:46:01,660 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:46:01,693 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:46:11,663 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:46:11,708 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:46:25,790 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:46:25,818 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:46:35,286 INFO [JavaFX Application Thread] h.j.p.m.MainApplication [MainApplication.java:56] Aplikacija se zatvara. Gasim pozadinske servise.
+2025-07-06 23:47:31,674 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:47:31,757 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:47:41,673 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:47:41,697 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:47:51,673 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:47:51,693 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:47:53,138 INFO [JavaFX Application Thread] h.j.p.m.MainApplication [MainApplication.java:56] Aplikacija se zatvara. Gasim pozadinske servise.
+2025-07-06 23:50:15,011 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:50:15,085 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:50:25,008 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:50:25,033 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:50:35,010 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:50:35,036 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:50:42,321 INFO [JavaFX Application Thread] h.j.p.m.MainApplication [MainApplication.java:56] Aplikacija se zatvara. Gasim pozadinske servise.
+2025-07-06 23:51:23,876 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:51:23,916 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:51:33,874 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:51:33,899 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:51:43,875 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:51:43,900 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:51:53,875 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:51:53,916 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:52:03,875 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:52:03,907 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:52:05,314 INFO [JavaFX Application Thread] h.j.p.m.MainApplication [MainApplication.java:56] Aplikacija se zatvara. Gasim pozadinske servise.
+2025-07-06 23:53:16,387 INFO [JavaFX Application Thread] h.j.p.m.MainApplication [MainApplication.java:56] Aplikacija se zatvara. Gasim pozadinske servise.
+2025-07-06 23:53:26,888 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:53:26,972 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:53:31,391 INFO [JavaFX Application Thread] h.j.p.m.MainApplication [MainApplication.java:56] Aplikacija se zatvara. Gasim pozadinske servise.
+2025-07-06 23:53:56,937 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:53:57,022 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:54:06,936 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:54:06,959 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:54:16,935 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:54:16,967 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:54:26,939 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:54:26,965 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:54:36,939 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:54:36,987 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:54:46,936 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:54:46,957 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:54:56,936 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:54:56,957 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:55:06,626 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:55:06,686 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:55:15,384 INFO [JavaFX Application Thread] h.j.p.m.MainApplication [MainApplication.java:56] Aplikacija se zatvara. Gasim pozadinske servise.
+2025-07-06 23:56:06,833 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:56:06,913 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:56:16,832 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:56:16,857 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:56:22,999 INFO [JavaFX Application Thread] h.j.p.m.MainApplication [MainApplication.java:56] Aplikacija se zatvara. Gasim pozadinske servise.
+2025-07-06 23:57:34,276 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:57:34,301 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:57:44,280 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:57:44,295 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:57:49,752 WARN [JavaFX Application Thread] h.j.p.u.DialogUtils [DialogUtils.java:32] Prikazano upozorenje korisniku: Naslov='Nije odabrana faktura', Sadržaj='Molimo odaberite fakturu za izmjenu.'
+2025-07-06 23:57:54,275 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:57:54,293 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:58:04,277 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:58:04,303 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:58:06,604 INFO [JavaFX Application Thread] h.j.p.m.MainApplication [MainApplication.java:56] Aplikacija se zatvara. Gasim pozadinske servise.
+2025-07-06 23:58:24,740 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:58:24,800 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:58:31,757 INFO [JavaFX Application Thread] h.j.p.m.MainApplication [MainApplication.java:56] Aplikacija se zatvara. Gasim pozadinske servise.
+2025-07-06 23:59:03,086 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:59:03,136 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:59:13,081 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:59:13,117 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:59:13,444 WARN [JavaFX Application Thread] h.j.p.u.DialogUtils [DialogUtils.java:32] Prikazano upozorenje korisniku: Naslov='Nije odabrana faktura', Sadržaj='Molimo odaberite fakturu za izmjenu.'
+2025-07-06 23:59:23,085 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:59:23,108 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:82] Faktura 34sdgg je dospjela. Mijenjam status u 'OVERDUE'.
+2025-07-06 23:59:23,141 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:55] Ažurirano 1 dospjelih faktura.
+2025-07-06 23:59:23,142 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:59:29,436 WARN [JavaFX Application Thread] h.j.p.c.InvoiceEditController [InvoiceEditController.java:116] Neispravan unos prilikom spremanja fakture.
+hr.javafx.projekt.exception.ValidationException: Status je obavezan.
+
+	at hr.javafx.projekt/hr.javafx.projekt.controller.InvoiceEditController.validateInput(InvoiceEditController.java:169)
+	at hr.javafx.projekt/hr.javafx.projekt.controller.InvoiceEditController.handleSave(InvoiceEditController.java:93)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at javafx.base@23.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+	at javafx.fxml@23.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+	at javafx.fxml@23.0.1/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1860)
+	at javafx.fxml@23.0.1/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1731)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@23.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@23.0.1/javafx.scene.Node.fireEvent(Node.java:8963)
+	at javafx.controls@23.0.1/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls@23.0.1/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+	at javafx.controls@23.0.1/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@23.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@23.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:3987)
+	at javafx.graphics@23.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1893)
+	at javafx.graphics@23.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2711)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:430)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:560)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.View.notifyMouse(View.java:946)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.mac.MacView.notifyMouse(MacView.java:128)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.mac.MacApplication._enterNestedEventLoopImpl(Native Method)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.mac.MacApplication._enterNestedEventLoop(MacApplication.java:173)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.Application.enterNestedEventLoop(Application.java:513)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.EventLoop.enter(EventLoop.java:107)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.enterNestedEventLoop(QuantumToolkit.java:656)
+	at javafx.graphics@23.0.1/javafx.stage.Stage.showAndWait(Stage.java:469)
+	at hr.javafx.projekt/hr.javafx.projekt.controller.InvoiceController.lambda$showEditDialog$12(InvoiceController.java:178)
+	at java.base/java.util.Optional.ifPresent(Optional.java:178)
+	at hr.javafx.projekt/hr.javafx.projekt.controller.InvoiceController.showEditDialog(InvoiceController.java:176)
+	at hr.javafx.projekt/hr.javafx.projekt.controller.InvoiceController.handleNewInvoice(InvoiceController.java:138)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at javafx.base@23.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+	at javafx.fxml@23.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+	at javafx.fxml@23.0.1/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1860)
+	at javafx.fxml@23.0.1/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1731)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@23.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@23.0.1/javafx.scene.Node.fireEvent(Node.java:8963)
+	at javafx.controls@23.0.1/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls@23.0.1/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+	at javafx.controls@23.0.1/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@23.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@23.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:3987)
+	at javafx.graphics@23.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1893)
+	at javafx.graphics@23.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2711)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:430)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:560)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.View.notifyMouse(View.java:946)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.mac.MacView.notifyMouse(MacView.java:128)
+2025-07-06 23:59:29,441 ERROR [JavaFX Application Thread] h.j.p.u.DialogUtils [DialogUtils.java:24] Prikazana greška korisniku: Naslov='Neispravan unos', Sadržaj='Status je obavezan.
+'
+2025-07-06 23:59:33,085 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:59:33,112 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:59:43,081 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:59:43,106 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-06 23:59:53,081 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-06 23:59:53,116 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:00:03,085 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:00:03,122 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:00:13,081 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:00:13,118 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:00:20,447 INFO [JavaFX Application Thread] h.j.p.m.MainApplication [MainApplication.java:56] Aplikacija se zatvara. Gasim pozadinske servise.
+2025-07-07 00:01:32,557 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:01:32,640 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:01:42,555 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:01:42,575 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:01:52,556 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:01:52,576 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:01:59,796 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:01:59,882 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:02:09,793 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:02:09,816 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:02:19,793 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:02:19,843 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:02:29,793 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:02:29,819 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:02:33,721 INFO [JavaFX Application Thread] h.j.p.m.MainApplication [MainApplication.java:56] Aplikacija se zatvara. Gasim pozadinske servise.
+2025-07-07 00:03:12,394 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:03:12,479 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:03:22,392 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:03:22,435 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:03:32,393 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:03:32,419 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:03:42,394 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:03:42,424 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:03:52,393 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:03:52,420 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:04:02,393 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:04:02,415 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:04:12,389 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:04:12,416 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:04:22,393 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:04:22,417 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:04:32,392 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:04:32,413 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:04:42,393 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:04:42,414 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:04:52,393 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:04:52,423 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:05:02,390 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:05:02,425 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:05:12,393 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:05:12,429 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:05:22,393 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:05:22,427 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:05:32,393 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:05:32,417 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:05:42,393 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:05:42,408 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:05:45,173 INFO [JavaFX Application Thread] h.j.p.m.MainApplication [MainApplication.java:56] Aplikacija se zatvara. Gasim pozadinske servise.
+2025-07-07 00:06:02,303 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:06:02,385 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:06:12,300 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:06:12,325 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:06:22,298 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:06:22,325 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:06:32,300 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:06:32,328 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:06:42,302 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:06:42,325 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:06:52,300 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:06:52,335 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:07:02,297 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:07:02,314 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:07:12,299 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:07:12,332 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:08:24,060 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:08:24,148 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:08:34,061 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:08:34,097 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:08:44,061 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:08:44,090 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:08:54,057 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:08:54,087 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:09:04,061 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:09:04,090 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:09:08,995 INFO [JavaFX Application Thread] h.j.p.m.MainApplication [MainApplication.java:56] Aplikacija se zatvara. Gasim pozadinske servise.
+2025-07-07 00:09:24,781 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:09:24,858 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:09:34,780 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:09:34,813 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:09:40,484 INFO [JavaFX Application Thread] h.j.p.m.MainApplication [MainApplication.java:56] Aplikacija se zatvara. Gasim pozadinske servise.
+2025-07-07 00:11:10,844 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:11:10,922 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:11:20,843 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:11:20,862 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:11:30,843 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:11:30,862 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:11:40,842 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:11:40,872 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:11:50,838 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:11:50,863 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:12:00,841 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:12:00,870 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:12:10,843 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:12:10,859 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:12:31,068 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:12:31,154 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:12:41,065 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:12:41,100 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:12:51,069 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:12:51,102 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:13:01,065 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:13:01,097 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:13:11,065 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:13:11,096 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:13:21,063 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:13:21,092 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:13:31,061 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:13:31,091 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:13:41,061 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:13:41,082 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:13:51,059 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:13:51,094 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:14:01,061 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:14:01,092 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:14:18,677 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:14:18,699 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:14:25,567 INFO [JavaFX Application Thread] h.j.p.m.MainApplication [MainApplication.java:56] Aplikacija se zatvara. Gasim pozadinske servise.
+2025-07-07 00:15:09,115 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:15:09,200 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:15:19,113 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:15:19,142 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:15:29,113 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:15:29,152 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:15:39,113 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:15:39,139 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:15:49,110 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:15:49,135 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:15:59,114 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:15:59,141 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:16:09,113 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:16:09,135 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:16:23,517 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:16:23,592 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:16:33,517 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:16:33,544 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:16:43,516 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:16:43,536 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:16:47,087 WARN [JavaFX Application Thread] h.j.p.u.DialogUtils [DialogUtils.java:32] Prikazano upozorenje korisniku: Naslov='Nije odabrana faktura', Sadržaj='Molimo odaberite fakturu za izmjenu.'
+2025-07-07 00:16:52,304 INFO [JavaFX Application Thread] h.j.p.m.MainApplication [MainApplication.java:56] Aplikacija se zatvara. Gasim pozadinske servise.
+2025-07-07 00:19:30,691 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:19:30,714 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:82] Faktura 4e634567 je dospjela. Mijenjam status u 'OVERDUE'.
+2025-07-07 00:19:30,762 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:55] Ažurirano 1 dospjelih faktura.
+2025-07-07 00:19:30,766 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:19:40,695 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:19:40,719 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:19:50,692 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:19:50,733 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:20:00,695 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:20:00,735 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:20:10,148 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:20:10,230 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:20:20,150 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:20:20,175 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:20:22,522 WARN [JavaFX Application Thread] h.j.p.u.DialogUtils [DialogUtils.java:32] Prikazano upozorenje korisniku: Naslov='Nije odabrana faktura', Sadržaj='Molimo odaberite fakturu za izmjenu.'
+2025-07-07 00:20:30,150 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:20:30,171 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:20:40,148 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:20:40,169 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:20:46,404 WARN [JavaFX Application Thread] h.j.p.c.InvoiceEditController [InvoiceEditController.java:116] Neispravan unos prilikom spremanja fakture.
+hr.javafx.projekt.exception.ValidationException: Datum izdavanja je obavezan.
+Datum dospijeća je obavezan.
+
+	at hr.javafx.projekt/hr.javafx.projekt.controller.InvoiceEditController.validateInput(InvoiceEditController.java:169)
+	at hr.javafx.projekt/hr.javafx.projekt.controller.InvoiceEditController.handleSave(InvoiceEditController.java:93)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at javafx.base@23.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+	at javafx.fxml@23.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+	at javafx.fxml@23.0.1/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1860)
+	at javafx.fxml@23.0.1/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1731)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@23.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@23.0.1/javafx.scene.Node.fireEvent(Node.java:8963)
+	at javafx.controls@23.0.1/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls@23.0.1/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+	at javafx.controls@23.0.1/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@23.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@23.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:3987)
+	at javafx.graphics@23.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1893)
+	at javafx.graphics@23.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2711)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:430)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:560)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.View.notifyMouse(View.java:946)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.mac.MacView.notifyMouse(MacView.java:128)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.mac.MacApplication._enterNestedEventLoopImpl(Native Method)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.mac.MacApplication._enterNestedEventLoop(MacApplication.java:173)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.Application.enterNestedEventLoop(Application.java:513)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.EventLoop.enter(EventLoop.java:107)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.enterNestedEventLoop(QuantumToolkit.java:656)
+	at javafx.graphics@23.0.1/javafx.stage.Stage.showAndWait(Stage.java:469)
+	at hr.javafx.projekt/hr.javafx.projekt.controller.InvoiceController.lambda$showEditDialog$12(InvoiceController.java:178)
+	at java.base/java.util.Optional.ifPresent(Optional.java:178)
+	at hr.javafx.projekt/hr.javafx.projekt.controller.InvoiceController.showEditDialog(InvoiceController.java:176)
+	at hr.javafx.projekt/hr.javafx.projekt.controller.InvoiceController.handleNewInvoice(InvoiceController.java:138)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at javafx.base@23.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+	at javafx.fxml@23.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+	at javafx.fxml@23.0.1/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1860)
+	at javafx.fxml@23.0.1/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1731)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base@23.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@23.0.1/javafx.scene.Node.fireEvent(Node.java:8963)
+	at javafx.controls@23.0.1/javafx.scene.control.Button.fire(Button.java:203)
+	at javafx.controls@23.0.1/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:207)
+	at javafx.controls@23.0.1/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:247)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@23.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@23.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@23.0.1/javafx.event.Event.fireEvent(Event.java:199)
+	at javafx.graphics@23.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:3987)
+	at javafx.graphics@23.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1893)
+	at javafx.graphics@23.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2711)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:430)
+	at javafx.graphics@23.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:560)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.View.notifyMouse(View.java:946)
+	at javafx.graphics@23.0.1/com.sun.glass.ui.mac.MacView.notifyMouse(MacView.java:128)
+2025-07-07 00:20:46,406 ERROR [JavaFX Application Thread] h.j.p.u.DialogUtils [DialogUtils.java:24] Prikazana greška korisniku: Naslov='Neispravan unos', Sadržaj='Datum izdavanja je obavezan.
+Datum dospijeća je obavezan.
+'
+2025-07-07 00:20:50,149 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:20:50,178 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:21:00,148 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:21:00,168 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:21:05,646 INFO [JavaFX Application Thread] h.j.p.m.MainApplication [MainApplication.java:56] Aplikacija se zatvara. Gasim pozadinske servise.
+2025-07-07 00:26:33,958 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:39] Pokretanje provjere statusa faktura...
+2025-07-07 00:26:34,033 INFO [pool-2-thread-1] h.j.p.s.InvoiceStatusMonitor [InvoiceStatusMonitor.java:72] Završena provjera statusa faktura.
+2025-07-07 00:26:43,701 INFO [JavaFX Application Thread] h.j.p.m.MainApplication [MainApplication.java:56] Aplikacija se zatvara. Gasim pozadinske servise.

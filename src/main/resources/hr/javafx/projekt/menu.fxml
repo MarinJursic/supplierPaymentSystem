@@ -3,30 +3,38 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.layout.BorderPane?>
 
-<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hr.javafx.projekt.controller.MenuController">
-    <top>
-        <MenuBar BorderPane.alignment="CENTER">
+<?import javafx.scene.layout.HBox?>
 
+
+<HBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hr.javafx.projekt.controller.MenuController">
+    <MenuBar HBox.hgrow="ALWAYS" styleClass="menu-bar">
+        <menus>
             <Menu mnemonicParsing="false" text="Dobavljači">
-
+                <items>
                     <MenuItem mnemonicParsing="false" onAction="#showSuppliers" text="Prikaži dobavljače" />
-
+                </items>
             </Menu>
-                <Menu mnemonicParsing="false" text="Fakture">
-                    <MenuItem mnemonicParsing="false" onAction="#showInvoices" text="Prikaži fakture"/>
-                </Menu>
-
+            <Menu mnemonicParsing="false" text="Fakture">
+                <items>
+                    <MenuItem mnemonicParsing="false" onAction="#showInvoices" text="Prikaži fakture" />
+                </items>
+            </Menu>
             <Menu fx:id="adminMenu" mnemonicParsing="false" text="Administracija">
-                <MenuItem mnemonicParsing="false" onAction="#showChangeLog" text="Pregled promjena" />
+                <items>
+                    <MenuItem mnemonicParsing="false" onAction="#showChangeLog" text="Pregled promjena" />
+                </items>
             </Menu>
-                <Menu mnemonicParsing="false" text="Odjava">
+        </menus>
+    </MenuBar>
 
-                        <MenuItem mnemonicParsing="false" onAction="#logout" text="Odjavi se" />
-
-                </Menu>
-
-        </MenuBar>
-    </top>
-</BorderPane>
+    <MenuBar styleClass="menu-bar">
+        <menus>
+            <Menu mnemonicParsing="false" text="Odjava">
+                <items>
+                    <MenuItem mnemonicParsing="false" onAction="#logout" text="Odjavi se" />
+                </items>
+            </Menu>
+        </menus>
+    </MenuBar>
+</HBox>

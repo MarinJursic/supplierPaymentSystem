@@ -59,7 +59,6 @@ public class UserRepository {
                 }
             }
         } catch (IOException e) {
-            log.error("Greška pri čitanju korisničke datoteke!", e);
             throw new RepositoryAccessException("Greška pri čitanju korisničke datoteke!", e);
         }
         throw new InvalidLoginException("Korisnik s imenom '" + username + "' ne postoji.");
@@ -109,7 +108,7 @@ public class UserRepository {
                 }
             }
         } catch (SQLException | IOException e) {
-            log.error("Greška pri spremanju korisnika u bazu.", e);
+
             throw new RepositoryAccessException("Greška pri spremanju korisnika u bazu.", e);
         }
     }
@@ -138,7 +137,7 @@ public class UserRepository {
             writer.newLine();
             writer.write(user.getRole().name());
         } catch (IOException e) {
-            log.error("Greška pri pisanju u korisničku datoteku!", e);
+
             throw new RepositoryAccessException("Greška pri pisanju u korisničku datoteku!", e);
         }
     }
@@ -160,7 +159,7 @@ public class UserRepository {
                 }
             }
         } catch (SQLException | IOException e) {
-            log.error("Greška pri pronalasku korisnika u bazi.", e);
+
             throw new RepositoryAccessException("Greška pri pronalasku korisnika u bazi.", e);
         }
         return Optional.empty();

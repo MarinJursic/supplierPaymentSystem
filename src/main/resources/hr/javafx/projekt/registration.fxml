@@ -1,34 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
 
-<GridPane alignment="CENTER" hgap="10" prefHeight="400.0" prefWidth="600.0" vgap="10" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hr.javafx.projekt.controller.RegistrationController">
-    <padding>
-        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
-    </padding>
-    <Label text="Registracija novog korisnika" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="CENTER">
-        <font>
-            <Font name="System Bold" size="24.0" />
-        </font>
-    </Label>
-    <Label text="Korisničko ime:" GridPane.rowIndex="1" />
-    <TextField fx:id="usernameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-    <Label text="Lozinka:" GridPane.rowIndex="2" />
-    <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-    <Label text="Potvrdi lozinku:" GridPane.rowIndex="3" />
-    <PasswordField fx:id="confirmPasswordField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+<StackPane stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hr.javafx.projekt.controller.RegistrationController">
+    <VBox alignment="CENTER" spacing="15" styleClass="form-container">
+        <Label styleClass="form-title" text="Registracija" />
 
-    <!-- NOVI DIO -->
-    <Label text="Rola:" GridPane.rowIndex="4" />
-    <ComboBox fx:id="roleComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-    <!-- KRAJ NOVOG DIJELA -->
+        <TextField fx:id="usernameField" promptText="Korisničko ime" styleClass="form-field" />
 
-    <HBox spacing="10" alignment="BOTTOM_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="5">
-        <Button onAction="#handleRegister" text="Registriraj se" />
-        <Button onAction="#showLoginScreen" text="Povratak na prijavu" />
-    </HBox>
-    <Label fx:id="errorLabel" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-</GridPane>
+        <PasswordField fx:id="passwordField" promptText="Lozinka (min. 8 znakova)" styleClass="form-field" />
+
+        <PasswordField fx:id="confirmPasswordField" promptText="Potvrdi lozinku" styleClass="form-field" />
+
+        <ComboBox fx:id="roleComboBox" prefWidth="Infinity" styleClass="combo-box" promptText="Odaberi rolu" />
+
+        <Label fx:id="errorLabel" styleClass="error-label" minHeight="20.0"/>
+
+        <Button onAction="#handleRegister" prefWidth="Infinity" styleClass="form-button" text="Registriraj se" />
+
+        <Hyperlink onAction="#showLoginScreen" styleClass="form-hyperlink" text="Već imate račun? Prijavite se." />
+    </VBox>
+</StackPane>

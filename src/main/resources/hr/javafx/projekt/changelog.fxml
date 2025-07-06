@@ -1,39 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hr.javafx.projekt.controller.ChangeLogController">
+<BorderPane stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hr.javafx.projekt.controller.ChangeLogController">
     <top>
-        <fx:include source="menu.fxml" fx:id="menu" />
+        <fx:include source="menu.fxml" />
     </top>
     <center>
-        <VBox spacing="10.0" BorderPane.alignment="CENTER">
-            <padding>
-                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-            </padding>
-            <Label text="Pregled Promjena u Sustavu">
-                <font>
-                    <Font name="System Bold" size="24.0" />
-                </font>
-                <VBox.margin>
-                    <Insets bottom="10.0" />
-                </VBox.margin>
-            </Label>
-            <Label text="* Dvostruki klik na redak za detalje" />
-            <TableView fx:id="changeLogTableView" VBox.vgrow="ALWAYS">
+        <VBox styleClass="page-container">
+            <Label styleClass="page-title" text="Pregled Promjena u Sustavu" />
+            <Label text="* Dvostruki klik na redak za detalje" style="-fx-font-style: italic; -fx-text-fill: #7f8c8d;" />
+
+            <TableView fx:id="changeLogTableView" styleClass="table-view" VBox.vgrow="ALWAYS">
                 <columns>
-                    <TableColumn fx:id="timestampColumn" prefWidth="160.0" text="Vrijeme" />
-                    <TableColumn fx:id="changeTypeColumn" prefWidth="100.0" text="Akcija" />
-                    <TableColumn fx:id="entityNameColumn" prefWidth="150.0" text="Entitet" />
-                    <TableColumn fx:id="userRoleColumn" prefWidth="120.0" text="Korisnik (Rola)" />
-                    <TableColumn fx:id="detailsColumn" prefWidth="250.0" text="Detalji" />
+                    <TableColumn fx:id="timestampColumn" minWidth="160.0" text="Vrijeme" />
+                    <TableColumn fx:id="changeTypeColumn" minWidth="100.0" text="Akcija" />
+                    <TableColumn fx:id="entityNameColumn" minWidth="150.0" text="Entitet" />
+                    <TableColumn fx:id="userRoleColumn" minWidth="120.0" text="Korisnik (Rola)" />
+                    <TableColumn fx:id="detailsColumn" minWidth="250.0" text="Detalji" />
                 </columns>
+                <columnResizePolicy>
+                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                </columnResizePolicy>
             </TableView>
         </VBox>
     </center>

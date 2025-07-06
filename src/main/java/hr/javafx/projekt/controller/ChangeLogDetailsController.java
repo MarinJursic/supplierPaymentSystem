@@ -67,7 +67,7 @@ public class ChangeLogDetailsController {
         oldValueBox.getChildren().add(new Label("Nema stare vrijednosti."));
         Map<String, String> newValues = parseStringToObjectMap(entry.newValue());
         newValues.forEach((key, value) ->
-                newValueBox.getChildren().add(createStyledLabel(key + ": " + value, "green")));
+                newValueBox.getChildren().add(new Label(key + ": " + value)));
     }
 
     /**
@@ -78,7 +78,7 @@ public class ChangeLogDetailsController {
     private void displayDeleted(ChangeLogEntry entry) {
         Map<String, String> oldValues = parseStringToObjectMap(entry.oldValue());
         oldValues.forEach((key, value) ->
-                oldValueBox.getChildren().add(createStyledLabel(key + ": " + value, "red")));
+                oldValueBox.getChildren().add(new Label(key + ": " + value)));
         newValueBox.getChildren().add(new Label("Nema nove vrijednosti."));
     }
 
@@ -108,19 +108,6 @@ public class ChangeLogDetailsController {
             oldValueBox.getChildren().add(oldLabel);
             newValueBox.getChildren().add(newLabel);
         });
-    }
-
-    /**
-     * Kreira stiliziranu labelu s određenom bojom teksta.
-     *
-     * @param text Tekst labele.
-     * @param color Boja teksta (npr. "green" ili "red").
-     * @return Stilizirana Labela.
-     */
-    private Label createStyledLabel(String text, String color) {
-        Label label = new Label(text);
-        label.setStyle("-fx-text-fill: " + color + "; -fx-font-weight: bold;");
-        return label;
     }
 
     /**

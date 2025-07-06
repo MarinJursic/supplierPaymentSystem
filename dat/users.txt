@@ -19,3 +19,11 @@ USER
 Korisnik2
 $2a$12$OQMVPrTAdiZVOvg5KxU5m.Hz1wryXOyL/.9iBN.X5Q5E5EeIxCd.u
 USER
+6
+Novi
+$2a$12$xlnmZPrkrC5OtFO/IJ89i.vRBtk9Wjq9wVuYNgRPcVj9tTgcTJuoi
+USER
+7
+Admin2
+$2a$12$22hiPz4FBmwviWvXsj3fDuCeBn8rW4bvl/wd/4gKyvmcFa7Y9gjUe
+USER

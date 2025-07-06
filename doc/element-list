@@ -1,0 +1,11 @@
+module:hr.javafx.projekt
+hr.javafx.projekt.controller
+hr.javafx.projekt.database
+hr.javafx.projekt.enums
+hr.javafx.projekt.exception
+hr.javafx.projekt.main
+hr.javafx.projekt.model
+hr.javafx.projekt.repository
+hr.javafx.projekt.service
+hr.javafx.projekt.session
+hr.javafx.projekt.utils
