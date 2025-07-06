@@ -3,6 +3,7 @@ package hr.javafx.projekt.controller;
 import hr.javafx.projekt.enums.UserRole;
 import hr.javafx.projekt.exception.RepositoryAccessException;
 import hr.javafx.projekt.exception.UsernameAlreadyExistsException;
+import hr.javafx.projekt.exception.ValidationException;
 import hr.javafx.projekt.repository.UserRepository;
 import hr.javafx.projekt.utils.DialogUtils;
 import hr.javafx.projekt.utils.Navigation;
@@ -39,25 +40,27 @@ public class RegistrationController {
     }
 
     /**
-     * Rukuje događajem registracije. Validira unos i, ako je ispravan, registrira novog korisnika.
+     * Rukuje događajem registracije. Validira unos i registrira novog korisnika.
      */
     @FXML
     private void handleRegister() {
-        if (!isInputValid()) {
-            return;
-        }
-
-        String username = usernameField.getText();
-        String password = passwordField.getText();
-        UserRole selectedRole = roleComboBox.getValue();
-
         try {
+            validateInput();
+
+            String username = usernameField.getText();
+            String password = passwordField.getText();
+            UserRole selectedRole = roleComboBox.getValue();
+
             userRepository.registerUser(username, password, selectedRole);
             DialogUtils.showInformation("Registracija Uspješna", "Korisnik '" + username + "' je uspješno registriran.");
             showLoginScreen();
+
+        } catch (ValidationException e) {
+            errorLabel.setText(e.getMessage());
+            log.warn("Neuspješna validacija prilikom registracije.", e);
         } catch (UsernameAlreadyExistsException e) {
             errorLabel.setText(e.getMessage());
-            log.warn("Pokušaj registracije s postojećim korisničkim imenom: {}", username, e);
+            log.warn("Pokušaj registracije s postojećim korisničkim imenom: {}", usernameField.getText(), e);
         } catch (RepositoryAccessException e) {
             errorLabel.setText("Greška pri pristupu podacima. Registracija nije uspjela.");
             log.error("Greška repozitorija prilikom registracije.", e);
@@ -66,29 +69,25 @@ public class RegistrationController {
 
     /**
      * Provjerava ispravnost unesenih podataka u formi za registraciju.
-     * @return true ako su svi podaci ispravni, inače false.
+     * @throws ValidationException ako podaci nisu ispravni.
      */
-    private boolean isInputValid() {
+    private void validateInput() throws ValidationException {
         String username = usernameField.getText();
         String password = passwordField.getText();
         String confirmPassword = confirmPasswordField.getText();
         UserRole selectedRole = roleComboBox.getValue();
 
         if (username.isBlank() || password.isEmpty() || confirmPassword.isEmpty() || selectedRole == null) {
-            errorLabel.setText("Sva polja su obavezna.");
-            return false;
+            throw new ValidationException("Sva polja su obavezna.");
         }
         if (password.length() < 8) {
-            errorLabel.setText("Lozinka mora imati barem 8 znakova.");
-            return false;
+            throw new ValidationException("Lozinka mora imati barem 8 znakova.");
         }
         if (!password.equals(confirmPassword)) {
-            errorLabel.setText("Lozinke se ne podudaraju.");
-            return false;
+            throw new ValidationException("Lozinke se ne podudaraju.");
         }
 
         errorLabel.setText("");
-        return true;
     }
 
     /**

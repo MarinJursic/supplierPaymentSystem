@@ -2,6 +2,7 @@ package hr.javafx.projekt.controller;
 
 import hr.javafx.projekt.enums.InvoiceStatus;
 import hr.javafx.projekt.exception.RepositoryAccessException;
+import hr.javafx.projekt.exception.ValidationException;
 import hr.javafx.projekt.model.Invoice;
 import hr.javafx.projekt.model.Supplier;
 import hr.javafx.projekt.repository.InvoiceRepository;
@@ -11,8 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import javafx.util.Callback;
-import javafx.util.StringConverter; // Potreban import
+import javafx.util.StringConverter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -89,37 +89,34 @@ public class InvoiceEditController {
      */
     @FXML
     private void handleSave() {
-        if (!isInputValid()) {
-            return;
-        }
+        try {
+            validateInput();
 
-        String invoiceNumber = invoiceNumberField.getText();
-        Supplier supplier = supplierComboBox.getValue();
-        BigDecimal amount = new BigDecimal(amountField.getText());
-        LocalDate issueDate = issueDatePicker.getValue();
-        LocalDate dueDate = dueDatePicker.getValue();
-        InvoiceStatus status = statusComboBox.getValue();
+            String invoiceNumber = invoiceNumberField.getText();
+            Supplier supplier = supplierComboBox.getValue();
+            BigDecimal amount = new BigDecimal(amountField.getText());
+            LocalDate issueDate = issueDatePicker.getValue();
+            LocalDate dueDate = dueDatePicker.getValue();
+            InvoiceStatus status = statusComboBox.getValue();
 
-        if (invoiceToEdit != null) {
-            if (DialogUtils.showConfirmation("Potvrda izmjene", "Jeste li sigurni da želite spremiti promjene?")) {
-                try {
+            if (invoiceToEdit != null) {
+                if (DialogUtils.showConfirmation("Potvrda izmjene", "Jeste li sigurni da želite spremiti promjene?")) {
                     Invoice updatedInvoice = new Invoice.Builder(invoiceToEdit.getId(), invoiceNumber, amount, supplier)
                             .withIssueDate(issueDate).withDueDate(dueDate).withStatus(status).build();
                     invoiceRepository.update(updatedInvoice);
                     closeWindow();
-                } catch (RepositoryAccessException e) {
-                    handleRepositoryError("Ažuriranje fakture nije uspjelo.", e);
                 }
-            }
-        } else {
-            try {
+            } else {
                 Invoice newInvoice = new Invoice.Builder(null, invoiceNumber, amount, supplier)
                         .withIssueDate(issueDate).withDueDate(dueDate).withStatus(status).build();
                 invoiceRepository.save(newInvoice);
                 closeWindow();
-            } catch (RepositoryAccessException e) {
-                handleRepositoryError("Spremanje nove fakture nije uspjelo.", e);
             }
+        } catch (ValidationException e) {
+            log.warn("Neispravan unos prilikom spremanja fakture.", e);
+            DialogUtils.showError("Neispravan unos", e.getMessage());
+        } catch (RepositoryAccessException e) {
+            handleRepositoryError("Spremanje fakture nije uspjelo.", e);
         }
     }
 
@@ -131,17 +128,15 @@ public class InvoiceEditController {
         closeWindow();
     }
 
-    /**
-     * Zatvara trenutni prozor.
-     */
     private void closeWindow() {
         ((Stage) titleLabel.getScene().getWindow()).close();
     }
 
     /**
-     * Provjerava jesu li svi uneseni podaci ispravni.
+     * Provjerava ispravnost unesenih podataka.
+     * @throws ValidationException ako podaci nisu ispravni.
      */
-    private boolean isInputValid() {
+    private void validateInput() throws ValidationException {
         StringBuilder errorMessage = new StringBuilder();
 
         if (invoiceNumberField.getText() == null || invoiceNumberField.getText().isBlank())
@@ -167,14 +162,12 @@ public class InvoiceEditController {
         if (statusComboBox.getValue() == null) errorMessage.append("Status je obavezan.\n");
 
         if (!errorMessage.isEmpty()) {
-            DialogUtils.showError("Neispravan unos", errorMessage.toString());
-            return false;
+            throw new ValidationException(errorMessage.toString());
         }
-        return true;
     }
 
     /**
-     * Centralizirano rukuje greškama iz repozitorija i prikazuje odgovarajuću poruku.
+     * Centralizirano rukuje greškama iz repozitorija.
      */
     private void handleRepositoryError(String defaultMessage, RepositoryAccessException e) {
         log.error(defaultMessage, e);

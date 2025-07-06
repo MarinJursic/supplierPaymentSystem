@@ -1,6 +1,7 @@
 package hr.javafx.projekt.controller;
 
 import hr.javafx.projekt.exception.RepositoryAccessException;
+import hr.javafx.projekt.exception.ValidationException;
 import hr.javafx.projekt.model.Supplier;
 import hr.javafx.projekt.repository.SupplierRepository;
 import hr.javafx.projekt.utils.DialogUtils;
@@ -27,7 +28,7 @@ public class SupplierEditController {
     private Supplier supplierToEdit = null;
 
     /**
-     * Postavlja podatke dobavljača za izmjenu i poziva metodu za popunjavanje forme.
+     * Postavlja podatke dobavljača za izmjenu i popunjava formu.
      * @param supplier Dobavljač koji se mijenja.
      */
     public void setSupplierToEdit(Supplier supplier) {
@@ -35,9 +36,6 @@ public class SupplierEditController {
         populateFormFields();
     }
 
-    /**
-     * Popunjava polja na formi podacima iz supplierToEdit objekta.
-     */
     private void populateFormFields() {
         titleLabel.setText("Izmijeni Dobavljača");
         nameField.setText(supplierToEdit.getName());
@@ -46,16 +44,13 @@ public class SupplierEditController {
     }
 
     /**
-     * Rukuje spremanjem podataka. Validira unos, traži potvrdu za izmjene,
-     * i sprema novog ili ažurira postojećeg dobavljača.
+     * Rukuje spremanjem podataka. Validira unos i sprema novog ili ažurira postojećeg dobavljača.
      */
     @FXML
     private void handleSave() {
-        if (!isInputValid()) {
-            return;
-        }
-
         try {
+            validateInput();
+
             if (supplierToEdit != null) {
                 if (DialogUtils.showConfirmation("Potvrda izmjene", "Jeste li sigurni da želite spremiti promjene?")) {
                     supplierToEdit.setName(nameField.getText());
@@ -69,6 +64,9 @@ public class SupplierEditController {
                 supplierRepository.save(newSupplier);
                 closeWindow();
             }
+        } catch (ValidationException e) {
+            log.warn("Neispravan unos prilikom spremanja dobavljača.", e);
+            DialogUtils.showError("Neispravan unos", e.getMessage());
         } catch (RepositoryAccessException e) {
             handleRepositoryError(e);
         }
@@ -82,18 +80,15 @@ public class SupplierEditController {
         closeWindow();
     }
 
-    /**
-     * Zatvara trenutni prozor.
-     */
     private void closeWindow() {
         ((Stage) titleLabel.getScene().getWindow()).close();
     }
 
     /**
-     * Provjerava jesu li svi uneseni podaci ispravni.
-     * @return True ako je unos ispravan, inače false.
+     * Provjerava ispravnost unesenih podataka.
+     * @throws ValidationException ako podaci nisu ispravni.
      */
-    private boolean isInputValid() {
+    private void validateInput() throws ValidationException {
         StringBuilder errorMessage = new StringBuilder();
         if (nameField.getText() == null || nameField.getText().isBlank()) {
             errorMessage.append("Naziv je obavezan.\n");
@@ -108,14 +103,12 @@ public class SupplierEditController {
         }
 
         if (!errorMessage.isEmpty()) {
-            DialogUtils.showError("Neispravan unos", errorMessage.toString());
-            return false;
+            throw new ValidationException(errorMessage.toString());
         }
-        return true;
     }
 
     /**
-     * Centralizirano rukuje greškama iz repozitorija i prikazuje odgovarajuću poruku.
+     * Centralizirano rukuje greškama iz repozitorija.
      * @param e Iznimka uhvaćena iz repozitorija.
      */
     private void handleRepositoryError(RepositoryAccessException e) {

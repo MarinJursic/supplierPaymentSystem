@@ -19,7 +19,6 @@
                 </Menu>
 
             <Menu fx:id="adminMenu" mnemonicParsing="false" text="Administracija">
-                <!-- Ažurirano -->
                 <MenuItem mnemonicParsing="false" onAction="#showChangeLog" text="Pregled promjena" />
             </Menu>
                 <Menu mnemonicParsing="false" text="Odjava">
