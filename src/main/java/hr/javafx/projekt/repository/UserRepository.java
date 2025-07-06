@@ -30,8 +30,14 @@ public class UserRepository {
     private static final int LINES_PER_USER = 4;
     private static final Logger log = LoggerFactory.getLogger(UserRepository.class);
 
+
     /**
      * Autentificira korisnika usporedbom s podacima iz tekstualne datoteke.
+     * @param username Korisničko ime za prijavu.
+     * @param password Lozinka za prijavu.
+     * @return Optional koji sadrži {@link Pair} s ID-om i rolom korisnika ako je prijava uspješna.
+     * @throws InvalidLoginException Ako korisničko ime ne postoji ili lozinka nije točna.
+     * @throws RepositoryAccessException Ako dođe do greške pri čitanju datoteka ili pristupu bazi.
      */
     public Optional<Pair<Long, UserRole>> authenticate(String username, String password) throws InvalidLoginException, RepositoryAccessException {
         try {
@@ -53,15 +59,19 @@ public class UserRepository {
                 }
             }
         } catch (IOException e) {
-            String message = "Greška pri čitanju korisničke datoteke!";
-            log.error(message, e);
-            throw new RepositoryAccessException(message, e);
+            log.error("Greška pri čitanju korisničke datoteke!", e);
+            throw new RepositoryAccessException("Greška pri čitanju korisničke datoteke!", e);
         }
         throw new InvalidLoginException("Korisnik s imenom '" + username + "' ne postoji.");
     }
 
     /**
      * Registrira novog korisnika u bazu podataka i tekstualnu datoteku.
+     * @param username Novo korisničko ime.
+     * @param password Nova lozinka.
+     * @param role Rola novog korisnika.
+     * @throws UsernameAlreadyExistsException Ako korisničko ime već postoji.
+     * @throws RepositoryAccessException Ako dođe do greške pri pristupu bazi ili datotekama.
      */
     public synchronized void registerUser(String username, String password, UserRole role) throws UsernameAlreadyExistsException, RepositoryAccessException {
         if (findUserIdByUsername(username).isPresent()) {
@@ -77,7 +87,10 @@ public class UserRepository {
     }
 
     /**
-     * Sprema novog korisnika u bazu podataka.
+     * Sprema novog korisnika u bazu podataka i vraća generirani ID.
+     * @param user Korisnik za spremanje.
+     * @return Generirani ID spremljenog korisnika.
+     * @throws RepositoryAccessException ako spremanje ne uspije.
      */
     private long saveUserToDatabase(User user) throws RepositoryAccessException {
         String sql = "INSERT INTO USERS (username, password_hash, role) VALUES (?, ?, ?)";
@@ -102,17 +115,17 @@ public class UserRepository {
     }
 
     /**
-     * Dodaje novog korisnika na kraj tekstualne datoteke.
+     * Dodaje podatke novog korisnika na kraj tekstualne datoteke.
+     * @param user Korisnik čiji se podaci dodaju.
+     * @throws RepositoryAccessException ako pisanje u datoteku ne uspije.
      */
     private void appendUserToFile(User user) throws RepositoryAccessException {
         File file = new File(USERS_FILE_PATH);
         File parentDir = file.getParentFile();
-        if (parentDir != null && !parentDir.exists()) {
-            if (!parentDir.mkdirs()) {
-                String message = "Nije moguće kreirati direktorij: " + parentDir.getAbsolutePath();
-                log.error(message);
-                throw new RepositoryAccessException(message);
-            }
+        if (parentDir != null && !parentDir.exists() && !parentDir.mkdirs()) {
+            String message = "Nije moguće kreirati direktorij: " + parentDir.getAbsolutePath();
+            log.error(message);
+            throw new RepositoryAccessException(message);
         }
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
@@ -132,6 +145,9 @@ public class UserRepository {
 
     /**
      * Pronalazi ID korisnika u bazi podataka prema korisničkom imenu.
+     * @param username Korisničko ime za pretragu.
+     * @return Optional koji sadrži ID korisnika ako je pronađen.
+     * @throws RepositoryAccessException ako dođe do greške pri pristupu bazi.
      */
     private Optional<Long> findUserIdByUsername(String username) throws RepositoryAccessException {
         String sql = "SELECT id FROM USERS WHERE username = ?";
@@ -144,9 +160,8 @@ public class UserRepository {
                 }
             }
         } catch (SQLException | IOException e) {
-            String message = "Greška pri pronalasku korisnika u bazi.";
-            log.error(message, e);
-            throw new RepositoryAccessException(message, e);
+            log.error("Greška pri pronalasku korisnika u bazi.", e);
+            throw new RepositoryAccessException("Greška pri pronalasku korisnika u bazi.", e);
         }
         return Optional.empty();
     }

@@ -19,7 +19,7 @@ public class StatusBarController {
     /**
      * Inicijalizira kontroler i povezuje UI elemente na centralno stanje.
      * Dohvaća statičku instancu StatusBarState iz MainApplication klase i
-     * povezuje (bind) svojstva UI elemenata na svojstva centralnog stanja.
+     * povezuje svojstva UI elemenata na svojstva centralnog stanja.
      */
     public void initialize() {
         StatusBarState state = MainApplication.getStatusBarState();

@@ -15,7 +15,6 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * Kontroler za ekran za prikaz i upravljanje dobavljačima.
@@ -33,7 +32,6 @@ public class SupplierController {
     @FXML private MenuController menuController;
 
     private final SupplierRepository supplierRepository = new SupplierRepository();
-    private List<Supplier> allSuppliers;
 
     /**
      * Inicijalizira kontroler, postavlja stupce tablice, vidljivost gumba
@@ -47,33 +45,35 @@ public class SupplierController {
         addressColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getAddress()));
         oibColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getOib()));
 
-        loadAllSuppliers();
+        refreshTable();
     }
 
     /**
-     * Učitava sve dobavljače iz repozitorija i prikazuje ih u tablici.
-     * U slučaju greške, prikazuje poruku korisniku.
+     * Centralna metoda koja dohvaća sve dobavljače, primjenjuje filter
+     * i ažurira TableView.
      */
-    private void loadAllSuppliers() {
+    private void refreshTable() {
         try {
-            allSuppliers = supplierRepository.findAll();
-            supplierTableView.setItems(FXCollections.observableArrayList(allSuppliers));
+            List<Supplier> allSuppliers = supplierRepository.findAll();
+            String nameFilter = nameFilterField.getText().toLowerCase();
+
+            List<Supplier> filteredList = allSuppliers.stream()
+                    .filter(supplier -> supplier.getName().toLowerCase().contains(nameFilter))
+                    .toList();
+
+            supplierTableView.setItems(FXCollections.observableArrayList(filteredList));
         } catch (RepositoryAccessException e) {
-            log.error("Greška prilikom dohvaćanja dobavljača.", e);
-            DialogUtils.showError("Greška", "Nije moguće dohvatiti podatke o dobavljačima.");
+            handleRepositoryError("Nije moguće dohvatiti podatke o dobavljačima.", e);
+            supplierTableView.setItems(FXCollections.emptyObservableList());
         }
     }
 
     /**
-     * Filtrira prikazane dobavljače na temelju unesenog naziva.
+     * Filtrira prikazane dobavljače pozivom centralne metode za osvježavanje.
      */
     @FXML
     private void handleFilter() {
-        String nameFilter = nameFilterField.getText().toLowerCase();
-        List<Supplier> filteredList = allSuppliers.stream()
-                .filter(supplier -> supplier.getName().toLowerCase().contains(nameFilter))
-                .collect(Collectors.toList());
-        supplierTableView.setItems(FXCollections.observableArrayList(filteredList));
+        refreshTable();
     }
 
     /**
@@ -86,7 +86,6 @@ public class SupplierController {
 
     /**
      * Otvara prozor za izmjenu odabranog dobavljača.
-     * Ako nijedan dobavljač nije odabran, prikazuje upozorenje.
      */
     @FXML
     private void handleEditSupplier() {
@@ -100,7 +99,6 @@ public class SupplierController {
 
     /**
      * Briše odabranog dobavljača nakon provjere i potvrde.
-     * Provjerava je li dobavljač povezan s fakturama prije brisanja.
      */
     @FXML
     private void handleDeleteSupplier() {
@@ -118,12 +116,11 @@ public class SupplierController {
 
             if (DialogUtils.showConfirmation("Potvrda brisanja", "Jeste li sigurni da želite obrisati ovog dobavljača?")) {
                 supplierRepository.deleteById(selected.getId());
-                loadAllSuppliers();
+                refreshTable();
                 DialogUtils.showInformation("Uspjeh", "Dobavljač je uspješno obrisan.");
             }
         } catch (RepositoryAccessException e) {
-            log.error("Neuspjelo brisanje dobavljača.", e);
-            DialogUtils.showError("Greška", "Došlo je do greške prilikom brisanja dobavljača.");
+            handleRepositoryError("Došlo je do greške prilikom brisanja dobavljača.", e);
         }
     }
 
@@ -142,7 +139,17 @@ public class SupplierController {
                 popup.controller().setSupplierToEdit(supplier);
             }
             popup.stage().showAndWait();
-            loadAllSuppliers();
+            refreshTable();
         }
+    }
+
+    /**
+     * Centralizirano obrađuje i logira greške iz repozitorija.
+     * @param message Poruka koja se prikazuje korisniku.
+     * @param e Iznimka koja se logira.
+     */
+    private void handleRepositoryError(String message, RepositoryAccessException e) {
+        log.error(message, e);
+        DialogUtils.showError("Greška baze podataka", message);
     }
 }

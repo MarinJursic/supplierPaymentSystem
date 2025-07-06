@@ -128,6 +128,10 @@ public class InvoiceEditController {
         closeWindow();
     }
 
+    /**
+     * Zatvara prozor
+     */
+
     private void closeWindow() {
         ((Stage) titleLabel.getScene().getWindow()).close();
     }

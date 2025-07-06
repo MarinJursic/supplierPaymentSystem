@@ -7,7 +7,6 @@ import hr.javafx.projekt.repository.InvoiceRepository;
 import javafx.application.Platform;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import hr.javafx.projekt.controller.InvoiceController;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -32,32 +31,40 @@ public class InvoiceStatusMonitor implements Runnable {
     }
 
     /**
-     * Provjere statusa faktura
+     * Glavna logika servisa. Dohvaća sve fakture, pronalazi one koje su dospjele
+     * i ažurira njihov status, te na kraju signalizira UI-u da se osvježi.
      */
     @Override
     public void run() {
         log.info("Pokretanje provjere statusa faktura...");
         Platform.runLater(() -> state.setLastUpdateText("Provjera u tijeku..."));
 
+        long overdueCount = 0;
+
         try {
-            List<Invoice> invoices = invoiceRepository.findAll();
-            long overdueCount = invoices.stream()
+            List<Invoice> allInvoices = invoiceRepository.findAll();
+
+            List<Invoice> overdueInvoices = allInvoices.stream()
                     .filter(inv -> inv.getStatus() == InvoiceStatus.UNPAID && inv.getDueDate().isBefore(LocalDate.now()))
-                    .peek(this::updateInvoiceToOverdue)
-                    .count();
+                    .toList();
+            overdueInvoices.forEach(this::updateInvoiceToOverdue);
+
+            overdueCount = overdueInvoices.size();
 
             if (overdueCount > 0) {
                 log.info("Ažurirano {} dospjelih faktura.", overdueCount);
             }
 
-
-            InvoiceController.refreshActiveInstance();
+            state.triggerRefresh();
 
         } catch (Exception e) {
             log.error("Greška prilikom automatskog ažuriranja statusa faktura.", e);
         }
 
-        String statusText = "Zadnja provjera: " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+        String statusText = String.format("Zadnja provjera: %s (%d promjena)",
+                LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")),
+                overdueCount);
+
         Platform.runLater(() -> {
             state.setProgress(0.0);
             state.setLastUpdateText(statusText);

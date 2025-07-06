@@ -25,6 +25,10 @@ public class InvoiceRepository extends AbstractRepository<Invoice> {
 
     /**
      * Sprema novu fakturu u bazu i bilježi promjenu.
+     *
+     * @param invoice Faktura za spremanje.
+     * @return Spremljena faktura s dodijeljenim ID-em.
+     * @throws RepositoryAccessException ako dođe do greške pri pristupu bazi.
      */
     @Override
     public Invoice save(Invoice invoice) throws RepositoryAccessException {
@@ -46,20 +50,22 @@ public class InvoiceRepository extends AbstractRepository<Invoice> {
                 }
             }
         } catch (SQLException | IOException e) {
-            String message = "Greška prilikom spremanja fakture!";
-            log.error(message, e);
-            throw new RepositoryAccessException(message, e);
+
+            throw new RepositoryAccessException("Greška prilikom spremanja fakture!", e);
         }
         return invoice;
     }
 
     /**
      * Dohvaća sve fakture iz baze.
+     *
+     * @return Lista svih faktura.
+     * @throws RepositoryAccessException ako dođe do greške pri pristupu bazi.
      */
     @Override
     public List<Invoice> findAll() throws RepositoryAccessException {
         List<Invoice> invoices = new ArrayList<>();
-        String sql = "SELECT * FROM INVOICE";
+        String sql = "SELECT id, invoice_number, issue_date, due_date, amount, status, supplier_id FROM INVOICE";
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
@@ -67,19 +73,22 @@ public class InvoiceRepository extends AbstractRepository<Invoice> {
                 mapResultSetToInvoice(rs).ifPresent(invoices::add);
             }
         } catch (SQLException | IOException e) {
-            String message = "Greška prilikom dohvaćanja svih faktura!";
-            log.error(message, e);
-            throw new RepositoryAccessException(message, e);
+
+            throw new RepositoryAccessException("Greška prilikom dohvaćanja svih faktura!", e);
         }
         return invoices;
     }
 
     /**
      * Pronalazi fakturu prema ID-u.
+     *
+     * @param id ID fakture.
+     * @return Optional koji sadrži fakturu ako je pronađena.
+     * @throws RepositoryAccessException ako dođe do greške pri pristupu bazi.
      */
     @Override
     public Optional<Invoice> findById(Long id) throws RepositoryAccessException {
-        String sql = "SELECT * FROM INVOICE WHERE id = ?";
+        String sql = "SELECT id, invoice_number, issue_date, due_date, amount, status, supplier_id FROM INVOICE WHERE id = ?";
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setLong(1, id);
@@ -89,15 +98,17 @@ public class InvoiceRepository extends AbstractRepository<Invoice> {
                 }
             }
         } catch (SQLException | IOException e) {
-            String message = "Greška prilikom dohvaćanja fakture po ID-u!";
-            log.error(message, e);
-            throw new RepositoryAccessException(message, e);
+
+            throw new RepositoryAccessException("Greška prilikom dohvaćanja fakture po ID-u!", e);
         }
         return Optional.empty();
     }
 
     /**
      * Ažurira postojeću fakturu u bazi i bilježi promjenu.
+     *
+     * @param invoice Faktura s ažuriranim podacima.
+     * @throws RepositoryAccessException ako dođe do greške pri pristupu bazi.
      */
     @Override
     public void update(Invoice invoice) throws RepositoryAccessException {
@@ -120,14 +131,15 @@ public class InvoiceRepository extends AbstractRepository<Invoice> {
             stmt.executeUpdate();
             ChangeLogger.logUpdate(oldInvoice, invoice);
         } catch (SQLException | IOException e) {
-            String message = "Greška prilikom ažuriranja fakture!";
-            log.error(message, e);
-            throw new RepositoryAccessException(message, e);
+            throw new RepositoryAccessException("Greška prilikom ažuriranja fakture!", e);
         }
     }
 
     /**
-     * Briše fakturu iz baze i bilježi promjenu.
+     * Briše fakturu iz baze podataka prema ID-u i bilježi promjenu.
+     *
+     * @param id ID fakture za brisanje.
+     * @throws RepositoryAccessException ako dođe do greške pri pristupu bazi.
      */
     @Override
     public void deleteById(Long id) throws RepositoryAccessException {
@@ -146,15 +158,17 @@ public class InvoiceRepository extends AbstractRepository<Invoice> {
                 ChangeLogger.logDeletion(oldInvoice);
             }
         } catch (SQLException | IOException e) {
-            String message = "Greška prilikom brisanja fakture!";
-            log.error(message, e);
-            throw new RepositoryAccessException(message, e);
+            throw new RepositoryAccessException("Greška prilikom brisanja fakture!", e);
         }
     }
 
     /**
-     * Pomoćna metoda za mapiranje jednog retka iz ResultSet-a u Invoice objekt.
+     * Mapira result set u fakture
+     * @param rs
+     * @return
+     * @throws SQLException
      */
+
     private Optional<Invoice> mapResultSetToInvoice(ResultSet rs) throws SQLException {
         Optional<Supplier> supplierOptional = supplierRepository.findById(rs.getLong("supplier_id"));
         if (supplierOptional.isEmpty()) {

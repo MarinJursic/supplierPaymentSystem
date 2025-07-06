@@ -38,6 +38,13 @@ public class LoginController {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
+        if (username.isBlank() || password.isEmpty()) {
+            errorLabel.setText("Korisničko ime i lozinka su obavezni.");
+            return;
+        }
+
+        errorLabel.setText("");
+
         try {
             Optional<Pair<Long, UserRole>> userOptional = userRepository.authenticate(username, password);
 

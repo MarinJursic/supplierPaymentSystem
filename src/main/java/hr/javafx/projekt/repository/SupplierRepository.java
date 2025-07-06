@@ -4,8 +4,6 @@ import hr.javafx.projekt.database.DatabaseConnection;
 import hr.javafx.projekt.exception.RepositoryAccessException;
 import hr.javafx.projekt.model.Supplier;
 import hr.javafx.projekt.utils.ChangeLogger;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.sql.*;
@@ -18,10 +16,12 @@ import java.util.Optional;
  */
 public class SupplierRepository extends AbstractRepository<Supplier> {
 
-    private static final Logger log = LoggerFactory.getLogger(SupplierRepository.class);
-
     /**
      * Sprema novog dobavljača u bazu i bilježi promjenu.
+     *
+     * @param supplier Dobavljač za spremanje.
+     * @return Spremljeni dobavljač s dodijeljenim ID-em.
+     * @throws RepositoryAccessException ako dođe do greške pri pristupu bazi.
      */
     @Override
     public Supplier save(Supplier supplier) throws RepositoryAccessException {
@@ -40,15 +40,17 @@ public class SupplierRepository extends AbstractRepository<Supplier> {
                 }
             }
         } catch (SQLException | IOException e) {
-            String message = "Greška prilikom spremanja dobavljača!";
-            log.error(message, e);
-            throw new RepositoryAccessException(message, e);
+
+            throw new RepositoryAccessException("Greška prilikom spremanja dobavljača!", e);
         }
         return supplier;
     }
 
     /**
      * Dohvaća sve dobavljače iz baze.
+     *
+     * @return Lista svih dobavljača.
+     * @throws RepositoryAccessException ako dođe do greške pri pristupu bazi.
      */
     @Override
     public List<Supplier> findAll() throws RepositoryAccessException {
@@ -66,15 +68,18 @@ public class SupplierRepository extends AbstractRepository<Supplier> {
                 ));
             }
         } catch (SQLException | IOException e) {
-            String message = "Greška prilikom dohvaćanja svih dobavljača!";
-            log.error(message, e);
-            throw new RepositoryAccessException(message, e);
+
+            throw new RepositoryAccessException("Greška prilikom dohvaćanja svih dobavljača!", e);
         }
         return suppliers;
     }
 
     /**
-     * Pronalazi dobavljača prema ID-u.
+     * Pronalazi dobavljača prema njegovom jedinstvenom ID-u.
+     *
+     * @param id ID dobavljača.
+     * @return Optional koji sadrži dobavljača ako je pronađen.
+     * @throws RepositoryAccessException ako dođe do greške pri pristupu bazi.
      */
     @Override
     public Optional<Supplier> findById(Long id) throws RepositoryAccessException {
@@ -93,15 +98,17 @@ public class SupplierRepository extends AbstractRepository<Supplier> {
                 }
             }
         } catch (SQLException | IOException e) {
-            String message = "Greška prilikom dohvaćanja dobavljača po ID-u!";
-            log.error(message, e);
-            throw new RepositoryAccessException(message, e);
+
+            throw new RepositoryAccessException("Greška prilikom dohvaćanja dobavljača po ID-u!", e);
         }
         return Optional.empty();
     }
 
     /**
      * Ažurira postojećeg dobavljača u bazi i bilježi promjenu.
+     *
+     * @param supplier Dobavljač s ažuriranim podacima.
+     * @throws RepositoryAccessException ako dođe do greške pri pristupu bazi.
      */
     @Override
     public void update(Supplier supplier) throws RepositoryAccessException {
@@ -121,14 +128,17 @@ public class SupplierRepository extends AbstractRepository<Supplier> {
             stmt.executeUpdate();
             ChangeLogger.logUpdate(oldSupplier, supplier);
         } catch (SQLException | IOException e) {
-            String message = "Greška prilikom ažuriranja dobavljača!";
-            log.error(message, e);
-            throw new RepositoryAccessException(message, e);
+
+            throw new RepositoryAccessException("Greška prilikom ažuriranja dobavljača!", e);
         }
     }
 
     /**
      * Provjerava je li dobavljač povezan s bilo kojom fakturom.
+     *
+     * @param supplierId ID dobavljača za provjeru.
+     * @return True ako je dobavljač povezan s barem jednom fakturom, inače false.
+     * @throws RepositoryAccessException ako dođe do greške pri pristupu bazi.
      */
     public boolean isSupplierLinkedToInvoices(Long supplierId) throws RepositoryAccessException {
         String sql = "SELECT COUNT(*) FROM INVOICE WHERE supplier_id = ?";
@@ -141,15 +151,17 @@ public class SupplierRepository extends AbstractRepository<Supplier> {
                 }
             }
         } catch (SQLException | IOException e) {
-            String message = "Greška prilikom provjere povezanosti dobavljača s fakturama!";
-            log.error(message, e);
-            throw new RepositoryAccessException(message, e);
+
+            throw new RepositoryAccessException("Greška prilikom provjere povezanosti dobavljača s fakturama!", e);
         }
         return false;
     }
 
     /**
-     * Briše dobavljača iz baze i bilježi promjenu.
+     * Briše dobavljača iz baze podataka prema ID-u i bilježi promjenu.
+     *
+     * @param id ID dobavljača za brisanje.
+     * @throws RepositoryAccessException ako dođe do greške pri pristupu bazi.
      */
     @Override
     public void deleteById(Long id) throws RepositoryAccessException {
@@ -168,9 +180,8 @@ public class SupplierRepository extends AbstractRepository<Supplier> {
                 ChangeLogger.logDeletion(oldSupplier);
             }
         } catch (SQLException | IOException e) {
-            String message = "Brisanje dobavljača nije uspjelo.";
-            log.error(message, e);
-            throw new RepositoryAccessException(message, e);
+
+            throw new RepositoryAccessException("Brisanje dobavljača nije uspjelo.", e);
         }
     }
 }

@@ -28,13 +28,17 @@ public class SupplierEditController {
     private Supplier supplierToEdit = null;
 
     /**
-     * Postavlja podatke dobavljača za izmjenu i popunjava formu.
-     * @param supplier Dobavljač koji se mijenja.
+     * Stavlja suppliera za edit
+     * @param supplier
      */
     public void setSupplierToEdit(Supplier supplier) {
         this.supplierToEdit = supplier;
         populateFormFields();
     }
+
+    /**
+     * Stavlja vrijednosti u polja za edit
+     */
 
     private void populateFormFields() {
         titleLabel.setText("Izmijeni Dobavljača");
@@ -44,23 +48,24 @@ public class SupplierEditController {
     }
 
     /**
-     * Rukuje spremanjem podataka. Validira unos i sprema novog ili ažurira postojećeg dobavljača.
+     * Sprema podatke dobavljača
      */
     @FXML
     private void handleSave() {
         try {
             validateInput();
+            String name = nameField.getText();
+            String address = addressField.getText();
+            String oib = oibField.getText();
 
             if (supplierToEdit != null) {
                 if (DialogUtils.showConfirmation("Potvrda izmjene", "Jeste li sigurni da želite spremiti promjene?")) {
-                    supplierToEdit.setName(nameField.getText());
-                    supplierToEdit.setAddress(addressField.getText());
-                    supplierToEdit.setOib(oibField.getText());
-                    supplierRepository.update(supplierToEdit);
+                    Supplier updatedSupplier = new Supplier(supplierToEdit.getId(), name, address, oib);
+                    supplierRepository.update(updatedSupplier);
                     closeWindow();
                 }
             } else {
-                Supplier newSupplier = new Supplier(null, nameField.getText(), addressField.getText(), oibField.getText());
+                Supplier newSupplier = new Supplier(null, name, address, oib);
                 supplierRepository.save(newSupplier);
                 closeWindow();
             }
@@ -73,13 +78,15 @@ public class SupplierEditController {
     }
 
     /**
-     * Zatvara prozor bez spremanja promjena.
+     * Zatvara prozor bez spremanja
      */
     @FXML
     private void handleCancel() {
         closeWindow();
     }
-
+    /**
+     * Zatvara prozor
+     */
     private void closeWindow() {
         ((Stage) titleLabel.getScene().getWindow()).close();
     }
@@ -109,12 +116,10 @@ public class SupplierEditController {
 
     /**
      * Centralizirano rukuje greškama iz repozitorija.
-     * @param e Iznimka uhvaćena iz repozitorija.
      */
     private void handleRepositoryError(RepositoryAccessException e) {
         log.error("Greška pri spremanju dobavljača.", e);
-        Throwable cause = e.getCause();
-        if (cause instanceof java.sql.SQLException sqlEx && "23505".equals(sqlEx.getSQLState())) {
+        if (e.getMessage() != null && e.getMessage().contains("23505")) {
             DialogUtils.showError("Greška pri spremanju", "Dobavljač s tim OIB-om već postoji!");
         } else {
             DialogUtils.showError("Greška pri spremanju", "Spremanje nije uspjelo. Provjerite log za detalje.");

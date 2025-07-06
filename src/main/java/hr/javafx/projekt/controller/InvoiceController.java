@@ -2,23 +2,22 @@ package hr.javafx.projekt.controller;
 
 import hr.javafx.projekt.enums.InvoiceStatus;
 import hr.javafx.projekt.exception.RepositoryAccessException;
+import hr.javafx.projekt.main.MainApplication;
 import hr.javafx.projekt.model.Invoice;
 import hr.javafx.projekt.repository.InvoiceRepository;
+import hr.javafx.projekt.service.StatusBarState;
 import hr.javafx.projekt.session.SessionManager;
 import hr.javafx.projekt.utils.DialogUtils;
 import hr.javafx.projekt.utils.Navigation;
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.util.Duration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,8 +25,6 @@ import java.util.Optional;
  * Kontroler za ekran za prikaz i upravljanje fakturama.
  */
 public class InvoiceController {
-
-    private static InvoiceController activeInstance;
 
     private static final Logger log = LoggerFactory.getLogger(InvoiceController.class);
 
@@ -47,17 +44,17 @@ public class InvoiceController {
     private final InvoiceRepository invoiceRepository = new InvoiceRepository();
 
     /**
-     * Inicijalizira kontroler, postavlja stupce tablice i pokreće periodično osvježavanje.
+     * Inicijalizira kontroler, postavlja stupce tablice i učitava podatke.
      */
     public void initialize() {
-        activeInstance = this;
         if (menuController != null) menuController.initialize();
         if (!SessionManager.isAdmin()) deleteInvoiceButton.setVisible(false);
 
         setupTableColumns();
         setupRowColoring();
         loadAndDisplayInvoices();
-
+        StatusBarState state = MainApplication.getStatusBarState();
+        state.refreshSignalProperty().addListener((obs, oldVal, newVal) -> loadAndDisplayInvoices());
     }
 
     /**
@@ -92,26 +89,28 @@ public class InvoiceController {
         });
     }
 
+    /**
+     * Ucitava i prikazuje fakture
+     */
     private void loadAndDisplayInvoices() {
-        List<Invoice> invoices = invoiceRepository.findAll();
+        List<Invoice> invoices;
+        try {
+            invoices = invoiceRepository.findAll();
+        } catch (RepositoryAccessException e) {
+            handleRepositoryError("Nije moguće učitati fakture iz baze podataka.", e);
+            invoices = Collections.emptyList();
+        }
+
+        List<Invoice> finalInvoices = invoices;
         Platform.runLater(() -> {
             String invoiceNumberFilter = invoiceNumberFilterField.getText();
             String supplierFilter = supplierFilterField.getText();
             if (!invoiceNumberFilter.isBlank() || !supplierFilter.isBlank()) {
                 handleFilter();
             } else {
-                invoiceTableView.setItems(FXCollections.observableArrayList(invoices));
+                invoiceTableView.setItems(FXCollections.observableArrayList(finalInvoices));
             }
         });
-    }
-
-    /**
-     * Statička metoda koju poziva pozadinski servis za osvježavanje prikaza.
-     */
-    public static void refreshActiveInstance() {
-        if (activeInstance != null) {
-            activeInstance.loadAndDisplayInvoices();
-        }
     }
 
     /**
@@ -182,20 +181,10 @@ public class InvoiceController {
     }
 
     /**
-     * Provjerava aktivnost filtera
-     * @return Da li je filter aktivan
+     * Centralizirano obrađuje i logira greške iz repozitorija.
+     * @param message Poruka koja se prikazuje korisniku.
+     * @param e Iznimka koja se logira.
      */
-
-    private boolean isFilterActive() {
-        return !invoiceNumberFilterField.getText().isBlank() || !supplierFilterField.getText().isBlank();
-    }
-
-    /**
-     * Handler za repository error
-     * @param message
-     * @param e
-     */
-
     private void handleRepositoryError(String message, RepositoryAccessException e) {
         log.error(message, e);
         DialogUtils.showError("Greška", message);

@@ -1,9 +1,7 @@
 package hr.javafx.projekt.service;
 
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.application.Platform;
+import javafx.beans.property.*;
 
 /**
  * Sadrži stanje statusne trake kao JavaFX svojstva (properties).
@@ -12,6 +10,8 @@ import javafx.beans.property.StringProperty;
 public class StatusBarState {
     private final DoubleProperty progress = new SimpleDoubleProperty(0.0);
     private final StringProperty lastUpdateText = new SimpleStringProperty("Inicijalizacija...");
+
+    private final LongProperty refreshSignal = new SimpleLongProperty(0L);
 
     /**
      * Vraća trenutnu vrijednost napretka.
@@ -53,5 +53,22 @@ public class StatusBarState {
      */
     public void setLastUpdateText(String lastUpdateText) {
         this.lastUpdateText.set(lastUpdateText);
+    }
+
+    /**
+     * Vraća read-only svojstvo signala za osvježavanje na koje se UI može pretplatiti.
+     * @return Read-only svojstvo signala.
+     */
+    public ReadOnlyLongProperty refreshSignalProperty() {
+        return refreshSignal;
+    }
+
+    /**
+     * Okidač koji pozivaju pozadinski servisi kako bi signalizirali potrebu za osvježavanjem.
+     * Postavlja novu vrijednost na signal property, što pokreće sve listenere.
+     * Koristi se Platform.runLater kako bi se osiguralo da se promjena dogodi na JavaFX niti.
+     */
+    public void triggerRefresh() {
+        Platform.runLater(() -> refreshSignal.set(System.currentTimeMillis()));
     }
 }
