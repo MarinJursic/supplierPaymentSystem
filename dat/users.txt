@@ -27,3 +27,15 @@ USER
 Admin2
 $2a$12$22hiPz4FBmwviWvXsj3fDuCeBn8rW4bvl/wd/4gKyvmcFa7Y9gjUe
 USER
+8
+Korisnik23
+$2a$12$xdXsflvi3hwhwxrU16gDju/SG6T1km287xTwCFFKYTauwLGLXiiRa
+USER
+9
+KorisnikNovi
+$2a$12$jx68eK0Ab/bI.Vb9IghnTu/nz0FrVLOnGOsQYMq1vIDEgkcn5XJKG
+USER
+10
+KorisnikNovi2
+$2a$12$0GYNuD4ylTl5Hr4y4xjzneREdR86U5lygWKnMMDdqDFxl0fuFoAje
+USER

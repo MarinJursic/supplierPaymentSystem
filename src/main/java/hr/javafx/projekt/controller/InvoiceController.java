@@ -4,7 +4,9 @@ import hr.javafx.projekt.enums.InvoiceStatus;
 import hr.javafx.projekt.exception.RepositoryAccessException;
 import hr.javafx.projekt.main.MainApplication;
 import hr.javafx.projekt.model.Invoice;
+import hr.javafx.projekt.model.Supplier;
 import hr.javafx.projekt.repository.InvoiceRepository;
+import hr.javafx.projekt.repository.SupplierRepository;
 import hr.javafx.projekt.service.StatusBarState;
 import hr.javafx.projekt.session.SessionManager;
 import hr.javafx.projekt.utils.DialogUtils;
@@ -14,12 +16,11 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.util.StringConverter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * Kontroler za ekran za prikaz i upravljanje fakturama.
@@ -29,7 +30,7 @@ public class InvoiceController {
     private static final Logger log = LoggerFactory.getLogger(InvoiceController.class);
 
     @FXML private TextField invoiceNumberFilterField;
-    @FXML private TextField supplierFilterField;
+    @FXML private ComboBox<Supplier> supplierFilterComboBox;
     @FXML private TableView<Invoice> invoiceTableView;
     @FXML private TableColumn<Invoice, String> invoiceNumberColumn;
     @FXML private TableColumn<Invoice, String> supplierColumn;
@@ -42,9 +43,10 @@ public class InvoiceController {
     @FXML private MenuController menuController;
 
     private final InvoiceRepository invoiceRepository = new InvoiceRepository();
+    private final SupplierRepository supplierRepository = new SupplierRepository();
 
     /**
-     * Inicijalizira kontroler, postavlja stupce tablice i učitava podatke.
+     * Inicijalizira kontroler, postavlja stupce tablice, filtere i učitava podatke.
      */
     public void initialize() {
         if (menuController != null) menuController.initialize();
@@ -52,7 +54,9 @@ public class InvoiceController {
 
         setupTableColumns();
         setupRowColoring();
+        setupSupplierFilterComboBox();
         loadAndDisplayInvoices();
+
         StatusBarState state = MainApplication.getStatusBarState();
         state.refreshSignalProperty().addListener((obs, oldVal, newVal) -> loadAndDisplayInvoices());
     }
@@ -90,7 +94,31 @@ public class InvoiceController {
     }
 
     /**
-     * Ucitava i prikazuje fakture
+     * Postavlja ComboBox za filtriranje dobavljača, koristeći Set za jedinstvene vrijednosti.
+     */
+    private void setupSupplierFilterComboBox() {
+        try {
+            Set<Supplier> uniqueSuppliers = new HashSet<>(supplierRepository.findAll());
+            List<Supplier> supplierList = new java.util.ArrayList<>();
+            supplierList.add(null);
+            supplierList.addAll(uniqueSuppliers);
+
+            supplierFilterComboBox.setItems(FXCollections.observableArrayList(supplierList));
+            supplierFilterComboBox.setConverter(new StringConverter<>() {
+                @Override
+                public String toString(Supplier supplier) {
+                    return supplier == null ? "Svi dobavljači" : supplier.getName();
+                }
+                @Override
+                public Supplier fromString(String string) { return null; }
+            });
+        } catch (RepositoryAccessException e) {
+            handleRepositoryError("Nije moguće učitati dobavljače za filter.", e);
+        }
+    }
+
+    /**
+     * Učitava i prikazuje fakture, pozivajući filter ako je aktivan.
      */
     private void loadAndDisplayInvoices() {
         List<Invoice> invoices;
@@ -103,9 +131,7 @@ public class InvoiceController {
 
         List<Invoice> finalInvoices = invoices;
         Platform.runLater(() -> {
-            String invoiceNumberFilter = invoiceNumberFilterField.getText();
-            String supplierFilter = supplierFilterField.getText();
-            if (!invoiceNumberFilter.isBlank() || !supplierFilter.isBlank()) {
+            if (!invoiceNumberFilterField.getText().isBlank() || supplierFilterComboBox.getValue() != null) {
                 handleFilter();
             } else {
                 invoiceTableView.setItems(FXCollections.observableArrayList(finalInvoices));
@@ -116,15 +142,25 @@ public class InvoiceController {
     /**
      * Filtrira fakture na temelju unesenih kriterija.
      */
+    @FXML
     public void handleFilter() {
         try {
             List<Invoice> allInvoices = invoiceRepository.findAll();
             String invoiceFilter = invoiceNumberFilterField.getText().toLowerCase();
-            String supplierFilter = supplierFilterField.getText().toLowerCase();
+            Supplier selectedSupplier = supplierFilterComboBox.getValue();
+
             List<Invoice> filteredList = allInvoices.stream()
                     .filter(inv -> inv.getInvoiceNumber().toLowerCase().contains(invoiceFilter))
-                    .filter(inv -> inv.getSupplier().getName().toLowerCase().contains(supplierFilter))
+                    .filter(inv -> {
+
+                        if (selectedSupplier == null) {
+                            return true;
+                        }
+
+                        return Objects.equals(inv.getSupplier().getId(), selectedSupplier.getId());
+                    })
                     .toList();
+
             invoiceTableView.setItems(FXCollections.observableArrayList(filteredList));
         } catch (RepositoryAccessException e) {
             handleRepositoryError("Nije moguće filtrirati podatke.", e);
@@ -134,6 +170,7 @@ public class InvoiceController {
     /**
      * Otvara prozor za unos nove fakture.
      */
+    @FXML
     public void handleNewInvoice() {
         showEditDialog(null);
     }
@@ -141,6 +178,7 @@ public class InvoiceController {
     /**
      * Otvara prozor za izmjenu odabrane fakture.
      */
+    @FXML
     public void handleEditInvoice() {
         Invoice selected = invoiceTableView.getSelectionModel().getSelectedItem();
         if (selected != null) showEditDialog(selected);
@@ -150,6 +188,7 @@ public class InvoiceController {
     /**
      * Briše odabranu fakturu nakon potvrde.
      */
+    @FXML
     public void handleDeleteInvoice() {
         Invoice selected = invoiceTableView.getSelectionModel().getSelectedItem();
         if (selected == null) {

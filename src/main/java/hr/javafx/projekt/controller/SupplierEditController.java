@@ -85,7 +85,7 @@ public class SupplierEditController {
         closeWindow();
     }
     /**
-     * Zatvara prozor
+     * Zatvara prozor3
      */
     private void closeWindow() {
         ((Stage) titleLabel.getScene().getWindow()).close();

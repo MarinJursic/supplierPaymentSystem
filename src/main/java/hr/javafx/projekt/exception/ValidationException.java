@@ -1,7 +1,7 @@
 package hr.javafx.projekt.exception;
 
 /**
- * Označena iznimka koja se baca kada dođe do greške pri validaciji podataka.
+ * Neoznačena iznimka koja se baca kada dođe do greške pri validaciji podataka.
  */
 public class ValidationException extends RuntimeException {
   public ValidationException() {

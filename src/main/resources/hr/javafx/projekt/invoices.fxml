@@ -27,7 +27,7 @@
                     </VBox>
                     <VBox spacing="5" GridPane.columnIndex="1">
                         <Label text="Dobavljač:" />
-                        <TextField fx:id="supplierFilterField" onAction="#handleFilter" promptText="Pretraži po dobavljaču..." />
+                        <ComboBox fx:id="supplierFilterComboBox" onAction="#handleFilter" prefWidth="250" promptText="Svi dobavljači" />
                     </VBox>
                     <Button onAction="#handleFilter" styleClass="action-button" text="Filtriraj" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM" />
                 </children>

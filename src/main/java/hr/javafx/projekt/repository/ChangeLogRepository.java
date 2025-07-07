@@ -27,7 +27,7 @@ public class ChangeLogRepository {
             try {
                 wait();
             } catch (InterruptedException e) {
-                log.error("Thread interrupted while waiting for change log file access.", e);
+                log.error("Nit prekinuta dok ceka za pristup datoteci.", e);
                 Thread.currentThread().interrupt();
             }
         }
@@ -65,7 +65,7 @@ public class ChangeLogRepository {
             try {
                 wait();
             } catch (InterruptedException e) {
-                log.error("Thread interrupted while waiting for change log file access.", e);
+                log.error("Nit prekinuta dok ceka za pristup datoteci.", e);
                 Thread.currentThread().interrupt();
             }
         }

@@ -24,8 +24,7 @@ public class MainApplication extends Application {
     private static final int UPDATE_INTERVAL_SECONDS = 10;
     private static final StatusBarState statusBarState = new StatusBarState();
 
-    private static ScheduledExecutorService invoiceScheduler;
-    private static ScheduledExecutorService progressScheduler;
+    private static ScheduledExecutorService backgroundScheduler;
 
     /**
      * Vraća jedinstvenu, statičku instancu stanja statusne trake.
@@ -53,23 +52,32 @@ public class MainApplication extends Application {
      */
     @Override
     public void stop() {
-        log.info("Aplikacija se zatvara. Gasim pozadinske servise.");
-        shutdownExecutor(invoiceScheduler);
-        shutdownExecutor(progressScheduler);
+        log.info("Aplikacija se zatvara. Gasim pozadinski servis.");
+        shutdownExecutor(backgroundScheduler);
     }
 
     /**
      * Pokreće pozadinske servise za praćenje statusa faktura i ažuriranje progress bara.
-     * Servisi se pokreću samo ako već nisu aktivni.
+     * Koristi jedan single-thread scheduler za oba zadatka.
+     * Servis se pokreće samo ako već nije aktivan.
      */
     public static void startBackgroundServices() {
-        if (invoiceScheduler == null || invoiceScheduler.isShutdown()) {
-            invoiceScheduler = Executors.newSingleThreadScheduledExecutor();
-            invoiceScheduler.scheduleAtFixedRate(new InvoiceStatusMonitor(statusBarState), 4, UPDATE_INTERVAL_SECONDS, TimeUnit.SECONDS);
-        }
-        if (progressScheduler == null || progressScheduler.isShutdown()) {
-            progressScheduler = Executors.newSingleThreadScheduledExecutor();
-            progressScheduler.scheduleAtFixedRate(new ProgressBarUpdaterService(statusBarState, UPDATE_INTERVAL_SECONDS), 0, 1, TimeUnit.SECONDS);
+        if (backgroundScheduler == null || backgroundScheduler.isShutdown()) {
+            backgroundScheduler = Executors.newSingleThreadScheduledExecutor();
+
+            backgroundScheduler.scheduleAtFixedRate(
+                    new InvoiceStatusMonitor(statusBarState),
+                    0,
+                    UPDATE_INTERVAL_SECONDS,
+                    TimeUnit.SECONDS
+            );
+
+            backgroundScheduler.scheduleAtFixedRate(
+                    new ProgressBarUpdaterService(statusBarState, UPDATE_INTERVAL_SECONDS),
+                    0,
+                    1,
+                    TimeUnit.SECONDS
+            );
         }
     }
 
